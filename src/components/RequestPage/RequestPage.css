@@ -1,0 +1,53 @@
+#printable {
+    padding: 50px 50px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.request-number {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.customer-worker {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.biggest {
+    font-size: 20px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.price-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.padding-x-10 {
+    padding: 0 10px;
+}

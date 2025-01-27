@@ -12,7 +12,10 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
     }, [form.getFieldsValue()]);
 
     const okHandler = () => {
-        const date = [form.getFieldValue('firstDateToDoneWork')[0].$d.toLocaleDateString(), form.getFieldValue('firstDateToDoneWork')[1].$d.toLocaleDateString()];
+        const date = [
+            form?.getFieldValue('firstDateToDoneWork')?.[0]?.$d?.toLocaleDateString(),
+            form?.getFieldValue('firstDateToDoneWork')?.[1]?.$d?.toLocaleDateString()
+        ];
         setCustomerData((prevState) => ({
             ...prevState,
             requestNumber: form.getFieldValue("requestNumber"),
@@ -77,6 +80,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     label="Телефон"
                     name="phone"
                     rules={[{required: true}]}
+                    initialValue="+375"
                 >
                     <Input />
                 </Form.Item>
