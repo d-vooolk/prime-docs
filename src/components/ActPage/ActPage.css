@@ -1,0 +1,7 @@
+#printableAct {
+    padding: 50px 50px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

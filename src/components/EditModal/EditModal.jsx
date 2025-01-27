@@ -1,15 +1,53 @@
-import React, {useEffect} from "react";
-import {Button, DatePicker, Form, Input, Modal} from "antd";
+import React from "react";
+import {Button, DatePicker, Form, Input, Modal, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
 
 const dateFormat = 'DD-MM-YYYY';
 
-const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
-    const [form] = useForm();
+const warrantyOptions = [
+    {
+        value: 'бессрочная до момента переоформления авто, при условии исправления недостатков, перечисленных в графе Обнаруженные недостатки.',
+        label: 'бессрочная',
+    },
+    {
+        value: '1 год',
+        label: '1 год',
+    },
+    {
+        value: 'без гарантии',
+        label: 'без гарантии',
+    },
+];
 
-    useEffect(() => {
-        console.log(form.getFieldsValue());
-    }, [form.getFieldsValue()]);
+const moduleOptions = [
+    {
+        value: 'Vision Advance',
+        label: 'Vision Advance',
+    },
+    {
+        value: 'Vision Ultimate',
+        label: 'Vision Ultimate',
+    },
+    {
+        value: 'Sanvi F50',
+        label: 'Sanvi F50',
+    },
+    {
+        value: 'Aozoom A6+',
+        label: 'Aozoom A6+',
+    },
+    {
+        value: 'Aozoom DK200',
+        label: 'Aozoom DK200',
+    },
+    {
+        value: 'клиентские',
+        label: 'клиентские',
+    },
+];
+
+const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
+    const [form] = useForm();
 
     const okHandler = () => {
         const date = [
@@ -34,6 +72,11 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
             serviceman: form.getFieldValue("serviceman"),
             requestDate: form.getFieldValue("requestDate"),
             customerRepresentative: form.getFieldValue("customerRepresentative"),
+            discoveredFlaws: form.getFieldValue("discoveredFlaws"),
+            valueJustification: form.getFieldValue("valueJustification"),
+            fullPrice: form.getFieldValue("fullPrice"),
+            warranty: form.getFieldValue("warranty"),
+            module: form.getFieldValue("module"),
         }))
         setIsModalOpen(false);
     }
@@ -43,7 +86,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
         setIsModalOpen(false);
     }
 
-    const { RangePicker } = DatePicker;
+    const {RangePicker} = DatePicker;
 
     return (
         <Modal
@@ -65,7 +108,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="requestNumber"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -73,7 +116,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="name"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -82,7 +125,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     rules={[{required: true}]}
                     initialValue="+375"
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -90,7 +133,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="carData.name"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -98,7 +141,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="carData.number"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -106,7 +149,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="carData.vin"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -114,7 +157,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="carData.year"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -122,7 +165,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="carData.km"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -130,7 +173,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="jobReason"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -138,7 +181,7 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     name="firstPrice"
                     rules={[{required: true}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -159,16 +202,16 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                     rules={[{required: true}]}
                     initialValue="Волк Дмитрий Иванович"
                 >
-                    <Input disabled={true} />
+                    <Input disabled={true}/>
                 </Form.Item>
 
-                <div>
+                <div className="margin-bottom-20" style={{ display: "flex", flexDirection: 'column' }}>
                     <Form.Item
                         label="Представитель"
                         name="customerRepresentative"
                         rules={[{required: true}]}
                     >
-                        <Input />
+                        <Input/>
                     </Form.Item>
                     <Button
                         onClick={
@@ -178,6 +221,53 @@ const EditModal = ({ isModalOpen, setIsModalOpen, setCustomerData }) => {
                         Представитель и заказчик совпадают
                     </Button>
                 </div>
+
+                <Form.Item
+                    label="Обнар. недостатки"
+                    name="discoveredFlaws"
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Обосн. доб. стоимости"
+                    name="valueJustification"
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Итоговая стоимость"
+                    name="fullPrice"
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Гарантия"
+                    name="warranty"
+                >
+                    <Select
+                        placeholder="Гарантия модулей"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={warrantyOptions}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    label="Модель модулей"
+                    name="module"
+                >
+                    <Select
+                        placeholder="Модель модулей"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={moduleOptions}
+                    />
+                </Form.Item>
             </Form>
         </Modal>
     )

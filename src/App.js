@@ -4,6 +4,7 @@ import {useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
 import {Button, Radio} from "antd";
+import ActPage from "./components/ActPage/ActPage";
 
 const modeOptions = [
     {
@@ -16,38 +17,55 @@ const modeOptions = [
     },
 ];
 
+const printSettings = {
+    type: 'html',
+    targetStyles: ['*'],
+    showModal: true,
+    header: null,
+    footer: null,
+};
+
+const defaultCustomerData = {
+    requestNumber: '',
+    name: '',
+    phone: '',
+    carData: {
+        name: '',
+        number: '',
+        vin: '',
+        year: '',
+        km: '',
+    },
+    jobReason: '',
+    firstPrice: '',
+    dateRange: '',
+    serviceman: '',
+    requestDate: '',
+    customerRepresentative: '',
+
+    discoveredFlaws: '',
+    valueJustification: '',
+    fullPrice: '',
+    warranty: '',
+    module: '',
+}
+
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShowAct, setIsShowAct] = useState(false);
 
-    const [customerData, setCustomerData] = useState(
-        {
-            requestNumber: '',
-            name: '',
-            phone: '',
-            carData: {
-                name: '',
-                number: '',
-                vin: '',
-                year: '',
-                km: '',
-            },
-            jobReason: '',
-            firstPrice: '',
-            dateRange: '',
-            serviceman: '',
-            requestDate: '',
-            customerRepresentative: '',
-        }
-    );
-    const handlePrint = () => {
+    const [customerData, setCustomerData] = useState(defaultCustomerData);
+    const handlePrintRequest = () => {
         printJS({
-            printable: 'printable',
-            type: 'html',
-            targetStyles: ['*'],
-            showModal: true,
-            header: null,
-            footer: null,
+            printable: 'printableRequest',
+            ...printSettings,
+        });
+    };
+
+    const handlePrintAct = () => {
+        printJS({
+            printable: 'printableAct',
+            ...printSettings,
         });
     };
 
@@ -55,17 +73,15 @@ function App() {
         <div>
             {
                 !isShowAct
-                ? (
-                        <RequestPage customerData={customerData} />
-                    )
-                    : (
-                        <></>
-                    )
+                    ? (<RequestPage customerData={customerData}/>)
+                    : (<ActPage customerData={customerData} />)
             }
 
             <div className="buttons">
                 <Button type="primary" onClick={() => setIsModalOpen(!isModalOpen)}>Редактировать данные</Button>
-                <Button type="dashed" onClick={handlePrint}>Печать заявки</Button>
+                { !isShowAct && <Button type="dashed" onClick={handlePrintRequest}>Печать заявки</Button> }
+                { isShowAct && <Button type="dashed" onClick={handlePrintAct}>Печать акта</Button> }
+                <Button onClick={() => setCustomerData(defaultCustomerData)}>Очистить</Button>
             </div>
             <Radio.Group
                 block
@@ -73,7 +89,7 @@ function App() {
                 defaultValue="request"
                 optionType="button"
                 buttonStyle="solid"
-                style={{ width: '345px', position: 'fixed', top: '100px', right: '50px' }}
+                style={{position: 'fixed', top: '100px', right: '50px'}}
                 onChange={() => setIsShowAct(!isShowAct)}
             />
 

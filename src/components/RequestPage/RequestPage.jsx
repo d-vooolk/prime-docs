@@ -46,7 +46,7 @@ const RequestPage = ({customerData}) => {
     ];
 
     return (
-        <div id="printable">
+        <div id="printableRequest">
             <div className="request-number">
                 Заявка № ПА-{
                 customerData.dateRange[0]
@@ -93,7 +93,7 @@ const RequestPage = ({customerData}) => {
 
             <div className="price-date padding-x-10">
                 <div className="bold biggest margin-bottom-20">Предварительная стоимость заказа:</div>
-                <div className="bold biggest margin-bottom-20">{customerData.firstPrice || 0}</div>
+                <div className="bold biggest margin-bottom-20">{customerData.firstPrice || 0} бел. руб.</div>
             </div>
 
             <div className="price-date padding-x-10">
