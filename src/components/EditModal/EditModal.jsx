@@ -46,7 +46,7 @@ const moduleOptions = [
     },
 ];
 
-const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
+const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData}) => {
     const [form] = useForm();
 
     const okHandler = () => {
@@ -107,6 +107,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Порядковый номер"
                     name="requestNumber"
                     rules={[{required: true}]}
+                    initialValue={customerData.requestNumber}
                 >
                     <Input/>
                 </Form.Item>
@@ -115,6 +116,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="ФИО"
                     name="name"
                     rules={[{required: true}]}
+                    initialValue={customerData.name}
                 >
                     <Input/>
                 </Form.Item>
@@ -123,7 +125,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Телефон"
                     name="phone"
                     rules={[{required: true}]}
-                    initialValue="+375"
+                    initialValue={customerData.phone || '+375'}
                 >
                     <Input/>
                 </Form.Item>
@@ -132,6 +134,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Автомобиль"
                     name="carData.name"
                     rules={[{required: true}]}
+                    initialValue={customerData.carData.name}
                 >
                     <Input/>
                 </Form.Item>
@@ -140,6 +143,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Рег знак"
                     name="carData.number"
                     rules={[{required: true}]}
+                    initialValue={customerData.carData.number}
                 >
                     <Input/>
                 </Form.Item>
@@ -148,6 +152,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="VIN"
                     name="carData.vin"
                     rules={[{required: true}]}
+                    initialValue={customerData.carData.vin}
                 >
                     <Input/>
                 </Form.Item>
@@ -156,6 +161,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Год выпуска"
                     name="carData.year"
                     rules={[{required: true}]}
+                    initialValue={customerData.carData.year}
                 >
                     <Input/>
                 </Form.Item>
@@ -164,6 +170,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Пробег"
                     name="carData.km"
                     rules={[{required: true}]}
+                    initialValue={customerData.carData.km}
                 >
                     <Input/>
                 </Form.Item>
@@ -172,6 +179,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Перечень работ"
                     name="jobReason"
                     rules={[{required: true}]}
+                    initialValue={customerData.jobReason}
                 >
                     <Input/>
                 </Form.Item>
@@ -180,6 +188,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Предв. стоимость"
                     name="firstPrice"
                     rules={[{required: true}]}
+                    initialValue={customerData.firstPrice}
                 >
                     <Input/>
                 </Form.Item>
@@ -200,16 +209,17 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                     label="Сотрудник"
                     name="serviceman"
                     rules={[{required: true}]}
-                    initialValue="Волк Дмитрий Иванович"
+                    initialValue={customerData.serviceman || "Волк Дмитрий Иванович"}
                 >
                     <Input disabled={true}/>
                 </Form.Item>
 
-                <div className="margin-bottom-20" style={{ display: "flex", flexDirection: 'column' }}>
+                <div className="margin-bottom-20" style={{display: "flex", flexDirection: 'column'}}>
                     <Form.Item
                         label="Представитель"
                         name="customerRepresentative"
                         rules={[{required: true}]}
+                        initialValue={customerData.customerRepresentative}
                     >
                         <Input/>
                     </Form.Item>
@@ -225,6 +235,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                 <Form.Item
                     label="Обнар. недостатки"
                     name="discoveredFlaws"
+                    initialValue={customerData.discoveredFlaws}
                 >
                     <Input/>
                 </Form.Item>
@@ -232,6 +243,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                 <Form.Item
                     label="Обосн. доб. стоимости"
                     name="valueJustification"
+                    initialValue={customerData.valueJustification}
                 >
                     <Input/>
                 </Form.Item>
@@ -239,6 +251,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                 <Form.Item
                     label="Итоговая стоимость"
                     name="fullPrice"
+                    initialValue={customerData.fullPrice}
                 >
                     <Input/>
                 </Form.Item>
@@ -246,6 +259,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                 <Form.Item
                     label="Гарантия"
                     name="warranty"
+                    initialValue={customerData.warranty}
                 >
                     <Select
                         placeholder="Гарантия модулей"
@@ -259,6 +273,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, setCustomerData}) => {
                 <Form.Item
                     label="Модель модулей"
                     name="module"
+                    initialValue={customerData.module}
                 >
                     <Select
                         placeholder="Модель модулей"

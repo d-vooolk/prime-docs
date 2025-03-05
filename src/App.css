@@ -7,7 +7,7 @@ body {
 
 .buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -15,4 +15,11 @@ body {
   position: fixed;
   top: 50px;
   right: 50px;
+}
+
+.buttons div {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
 }
