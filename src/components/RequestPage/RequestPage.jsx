@@ -1,37 +1,8 @@
 import React from 'react';
 import './RequestPage.css';
 import {Table} from "antd";
-
-const emptyData = '_________________';
-const spaceForCredentions = '_________________________';
-
-const tableColumns = [
-    {
-        title: 'Данные автомобиля',
-        dataIndex: 'carName',
-        key: 'carName',
-    },
-    {
-        title: 'Регистрационный знак',
-        dataIndex: 'number',
-        key: 'number',
-    },
-    {
-        title: 'VIN / заводской номер',
-        dataIndex: 'vin',
-        key: 'vin',
-    },
-    {
-        title: 'Год выпуска',
-        dataIndex: 'year',
-        key: 'year',
-    },
-    {
-        title: 'Пробег',
-        dataIndex: 'km',
-        key: 'km',
-    },
-];
+import {emptyData, spaceForCredentions} from "../../utils/constants";
+import {tableColumns} from "../../utils/tableColumns";
 
 const RequestPage = ({customerData}) => {
     const tableDataSource = [
