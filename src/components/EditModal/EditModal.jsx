@@ -52,6 +52,14 @@ const moduleOptions = [
         label: 'Aozoom DK200',
     },
     {
+        value: 'Sunrise Mini',
+        label: 'Sunrise Mini',
+    },
+    {
+        value: 'UPS Maker',
+        label: 'UPS Maker',
+    },
+    {
         value: 'клиентские',
         label: 'клиентские',
     },
