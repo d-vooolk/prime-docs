@@ -4,6 +4,17 @@ import {useForm} from "antd/es/form/Form";
 
 const dateFormat = 'DD-MM-YYYY';
 
+const servicemanOptions = [
+    {
+        value: "Волк Дмитрий Иванович",
+        label: "Волк Дмитрий Иванович"
+    },
+    {
+        value: "Томилин Руслан Андреевич",
+        label: "Томилин Руслан Андреевич"
+    }
+]
+
 const warrantyOptions = [
     {
         value: 'бессрочная до момента переоформления авто, при условии исправления недостатков, перечисленных в графе Обнаруженные недостатки.',
@@ -211,7 +222,13 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     rules={[{required: true}]}
                     initialValue={customerData.serviceman || "Волк Дмитрий Иванович"}
                 >
-                    <Input disabled={true}/>
+                    <Select
+                        placeholder="Сотрудник"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={servicemanOptions}
+                    />
                 </Form.Item>
 
                 <div className="margin-bottom-20" style={{display: "flex", flexDirection: 'column'}}>

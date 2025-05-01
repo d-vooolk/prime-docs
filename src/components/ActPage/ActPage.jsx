@@ -113,7 +113,7 @@ const ActPage = ({ customerData }) => {
                     alignItems: 'center'
                 }}>
                     <div>{customerData.serviceman}</div>
-                    <div>{spaceForCredentions}</div>
+                    <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[1]}</div>
                 </div>
             </div>

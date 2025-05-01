@@ -101,7 +101,7 @@ const RequestPage = ({customerData}) => {
                     alignItems: 'center'
                 }}>
                     <div>{customerData.serviceman}</div>
-                    <div>{spaceForCredentions}</div>
+                    <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[0]}</div>
                 </div>
             </div>
