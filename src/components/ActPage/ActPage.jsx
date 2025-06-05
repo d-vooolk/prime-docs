@@ -55,7 +55,6 @@ const ActPage = ({ customerData }) => {
             </div>
 
             <br/>
-            <br/>
 
             <div>
                 <div className="bold biggest">Перечень работ, которые Заказчик просил произвести:</div>
