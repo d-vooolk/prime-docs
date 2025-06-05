@@ -228,7 +228,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     label="Сотрудник"
                     name="serviceman"
                     rules={[{required: true}]}
-                    initialValue={customerData.serviceman}
+                    initialValue={customerData.serviceman || servicemanOptions[0].value}
                 >
                     <Select
                         placeholder="Сотрудник"
