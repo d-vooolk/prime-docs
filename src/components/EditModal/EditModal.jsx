@@ -6,12 +6,12 @@ const dateFormat = 'DD-MM-YYYY';
 
 const servicemanOptions = [
     {
-        value: "Волк Дмитрий Иванович",
-        label: "Волк Дмитрий Иванович"
-    },
-    {
         value: "Томилин Руслан Андреевич",
         label: "Томилин Руслан Андреевич"
+    },
+    {
+        value: "Волк Дмитрий Иванович",
+        label: "Волк Дмитрий Иванович"
     }
 ]
 
@@ -228,7 +228,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     label="Сотрудник"
                     name="serviceman"
                     rules={[{required: true}]}
-                    initialValue={customerData.serviceman || "Волк Дмитрий Иванович"}
+                    initialValue={customerData.serviceman}
                 >
                     <Select
                         placeholder="Сотрудник"
