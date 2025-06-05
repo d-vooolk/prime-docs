@@ -58,6 +58,16 @@ const ActPage = ({ customerData }) => {
             <br/>
 
             <div>
+                <div className="bold biggest">Перечень работ, которые Заказчик просил произвести:</div>
+                <div className="margin-bottom-10 font-size-12">(неисправности ТС, подлежащие устранению или
+                    описание этих неисправеностей)
+                </div>
+                <div>
+                    <div className="margin-bottom-20">{customerData.jobReason}</div>
+                </div>
+            </div>
+
+            <div>
                 <div className="bold biggest margin-bottom-10">Обнаруженные недостатки:</div>
                 <div>{customerData.discoveredFlaws || ''}</div>
             </div>
@@ -102,7 +112,7 @@ const ActPage = ({ customerData }) => {
             <br/>
 
             <div className="bold biggest margin-bottom-10">Контроль полноты, качества работ, комплектность и проверку
-                технического состояния автомобиля произвл:
+                технического состояния автомобиля произвёл:
             </div>
             <div className="final-req">
                 <div style={{
