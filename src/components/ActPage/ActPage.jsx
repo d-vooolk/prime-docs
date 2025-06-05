@@ -6,7 +6,7 @@ import {tableColumns} from "../../utils/tableColumns";
 const emptyData = '_________________';
 const spaceForCredentions = '_________________________';
 
-const ActPage = ({ customerData }) => {
+const ActPage = ({customerData}) => {
     const tableDataSource = [
         {
             key: '1',
@@ -54,15 +54,13 @@ const ActPage = ({ customerData }) => {
                 />
             </div>
 
-            <br/>
-
             <div>
                 <div className="bold biggest">Перечень работ, которые Заказчик просил произвести:</div>
                 <div className="margin-bottom-10 font-size-12">(неисправности ТС, подлежащие устранению или
                     описание этих неисправеностей)
                 </div>
                 <div>
-                    <div className="margin-bottom-20">{customerData.jobReason}</div>
+                    <div>{customerData.jobReason}</div>
                 </div>
             </div>
 
@@ -93,8 +91,15 @@ const ActPage = ({ customerData }) => {
                     обслуживанию могут быть предъявлены заказчиком в течении следующих гарантийных сроков: <br/>
                     - работы проведённые по доработке узла фар ТС - в течение 365 дней при пробеге не более 50000
                     км; <br/>
-                    - установленные модули в фары ТС – {customerData.warranty || '-'} <br/>
-                    Модель модулей, установленных в фару ТС: – {customerData.module || 'не устанавливался'} <br/>
+                    {
+                        customerData?.module && (
+                            `
+                                - установленные модули в фары ТС – ${customerData.warranty || '-'} <br/>
+                                Модель модулей, установленных в фару ТС: – ${customerData.module || 'не устанавливался'} <br/>
+                            `
+                        )
+                    }
+
                     Для действия гарантии фара должна соответствовать заводским параметрам герметичности. <br/>
                     При любом ДТП необходимо явиться к исполнителю для диагностики повреждений фар. <br/>
                     При несоответствии фары эксплуатационным характеристикам, не связанными с работой Исполнителя,
