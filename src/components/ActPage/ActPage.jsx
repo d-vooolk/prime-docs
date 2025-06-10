@@ -52,6 +52,7 @@ const ActPage = ({customerData}) => {
                     pagination={false}
                     className="margin-bottom-20"
                 />
+                <br />
             </div>
 
             <div>
@@ -62,6 +63,7 @@ const ActPage = ({customerData}) => {
                 <div>
                     <div>{customerData.jobReason}</div>
                 </div>
+                <br />
             </div>
 
             <div>

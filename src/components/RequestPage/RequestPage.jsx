@@ -50,6 +50,7 @@ const RequestPage = ({customerData}) => {
                     pagination={false}
                     className="margin-bottom-20"
                 />
+                <br />
             </div>
 
             <div>
