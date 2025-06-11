@@ -114,7 +114,7 @@ const RequestPage = ({customerData}) => {
 
             <div>
                 <div className="biggest bold margin-bottom-10">Представитель заказчика</div>
-                <div>Прошу принять ТС и произвести вышеперечисленные работы. С условиями и обязанностями ознакомлен.</div>
+                <div>Прошу принять ТС и произвести вышеперечисленные работы. <br /> С условиями и обязанностями ознакомлен.</div>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'row',
