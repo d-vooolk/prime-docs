@@ -95,10 +95,10 @@ const ActPage = ({customerData}) => {
                     км; <br/>
                     {
                         customerData?.module && (
-                            `
-                                - установленные модули в фары ТС – ${customerData.warranty || '-'} <br/>
-                                Модель модулей, установленных в фару ТС: – ${customerData.module || 'не устанавливался'} <br/>
-                            `
+                            <div>
+                                - установленные модули в фары ТС – {customerData.warranty || '-'} <br />
+                                Модель модулей, установленных в фару ТС: – {customerData.module || 'не устанавливался'}
+                            </div>
                         )
                     }
 
