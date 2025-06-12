@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/client-appointment/static/css/main.77833999.css",
-    "main.js": "/client-appointment/static/js/main.a6174605.js",
-    "static/js/488.f0def728.chunk.js": "/client-appointment/static/js/488.f0def728.chunk.js",
-    "index.html": "/client-appointment/index.html",
-    "main.77833999.css.map": "/client-appointment/static/css/main.77833999.css.map",
-    "main.a6174605.js.map": "/client-appointment/static/js/main.a6174605.js.map",
-    "488.f0def728.chunk.js.map": "/client-appointment/static/js/488.f0def728.chunk.js.map"
+    "main.css": "/prime-docs/static/css/main.77833999.css",
+    "main.js": "/prime-docs/static/js/main.53815b6b.js",
+    "static/js/488.f0def728.chunk.js": "/prime-docs/static/js/488.f0def728.chunk.js",
+    "index.html": "/prime-docs/index.html",
+    "main.77833999.css.map": "/prime-docs/static/css/main.77833999.css.map",
+    "main.53815b6b.js.map": "/prime-docs/static/js/main.53815b6b.js.map",
+    "488.f0def728.chunk.js.map": "/prime-docs/static/js/488.f0def728.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.77833999.css",
-    "static/js/main.a6174605.js"
+    "static/js/main.53815b6b.js"
   ]
 }
