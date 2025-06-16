@@ -49,6 +49,7 @@ const defaultCustomerData = {
     discoveredFlaws: '',
     valueJustification: '',
     fullPrice: '',
+    workEnd: '',
     warranty: '',
     module: '',
 }

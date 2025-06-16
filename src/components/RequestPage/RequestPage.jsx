@@ -91,11 +91,6 @@ const RequestPage = ({customerData}) => {
             </div>
 
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
 
             <div className="bold biggest margin-bottom-10">Заявку оформил:</div>
             <div className="final-req">
@@ -106,7 +101,7 @@ const RequestPage = ({customerData}) => {
                     justifyContent: 'space-between',
                     alignItems: 'center'
                 }}>
-                    <div>{customerData.serviceman}</div>
+                    <div>Мастер {customerData.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[0]}</div>
                 </div>
