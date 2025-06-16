@@ -91,8 +91,10 @@ const RequestPage = ({customerData}) => {
             </div>
 
             <br/>
+            <br/>
+            <br/>
 
-            <div className="bold biggest margin-bottom-10">Заявку оформил:</div>
+            <div className="bold biggest">Заявку оформил:</div>
             <div className="final-req">
                 <div style={{
                     display: 'flex',

@@ -1,22 +1,10 @@
 import React from 'react';
 import './ActPage.css';
-import {Table} from "antd";
-import {tableColumns} from "../../utils/tableColumns";
 
 const emptyData = '_________________';
 const spaceForCredentions = '_________________________';
 
 const ActPage = ({customerData}) => {
-    const tableDataSource = [
-        {
-            key: '1',
-            carName: customerData.carData.name,
-            number: customerData.carData.number,
-            vin: customerData.carData.vin,
-            year: customerData.carData.year,
-            km: customerData.carData.km,
-        },
-    ];
 
     return (
         <div id="printableAct">
@@ -45,13 +33,13 @@ const ActPage = ({customerData}) => {
             </div>
 
             <div>
-                <div className="bold biggest margin-bottom-10">Транспортное средство (ТС):</div>
-                <Table
-                    columns={tableColumns}
-                    dataSource={tableDataSource}
-                    pagination={false}
-                    className="margin-bottom-20"
-                />
+                <div>
+                    { customerData?.carData?.name && <span><b>Автомобиль:</b> {customerData?.carData?.name}, </span> }
+                    { customerData?.carData?.number && <span><b>гос. номер:</b> {customerData?.carData?.number}, </span> }
+                    { customerData?.carData?.vin && <span><b>VIN:</b> {customerData?.carData?.vin}, </span> }
+                    { customerData?.carData?.year && <span><b>год. вып.:</b> {customerData?.carData?.year}, </span> }
+                    { customerData?.carData?.km && <span><b>пробег:</b> {customerData?.carData?.km}</span> }
+                </div>
                 <br />
             </div>
 
@@ -67,23 +55,32 @@ const ActPage = ({customerData}) => {
             </div>
 
             <div>
-                <div className="bold biggest margin-bottom-10">Обнаруженные недостатки:</div>
-                <div>{customerData.discoveredFlaws || ''}</div> <br />
+                <div>
+                    <span className="bold biggest margin-bottom-10">Обнаруженные недостатки: </span>
+                    {customerData.discoveredFlaws || ''}
+                </div>
+                <br />
             </div>
 
             <div>
-                <div className="bold biggest margin-bottom-10">Обоснование добавленной стоимости:</div>
-                <div>{customerData.valueJustification || ''}</div>
+                <div>
+                    <span className="bold biggest margin-bottom-10">Обоснование добавленной стоимости: </span>
+                    {customerData.valueJustification || ''}
+                </div>
             </div>
 
             <div>
-                <div className="bold biggest margin-bottom-10">Итоговая стоимость заказа:</div>
-                <div>{customerData.fullPrice || ''} бел. руб.</div>
+                <div>
+                    <span className="bold biggest margin-bottom-10">Итоговая стоимость заказа: </span>
+                    {customerData.fullPrice || ''} бел. руб.
+                </div>
             </div>
 
             <div>
-                <div className="bold biggest margin-bottom-10">Дата окончания работ:</div>
-                <div>{customerData.workEnd || ''}</div>
+                <div>
+                    <span className="bold biggest margin-bottom-10">Дата окончания работ: </span>
+                    {customerData.workEnd || ''}
+                </div>
             </div>
 
             <div>
@@ -114,14 +111,20 @@ const ActPage = ({customerData}) => {
                     исправления исполнителю.
                 </div>
 
+                <br />
+                <br />
+                <br />
+                <br />
+
                 <div>
-                    С объёмом работ согласен(на), перечень работ понятен, претензий к выполненным работам и состоянию ТС (как
-                    с внешней, так и с внутренней стороны) не имею, все работы приняты мною в полном объёме, качество мною
+                    С объёмом работ согласен(на), перечень работ понятен, претензий к выполненным работам и состоянию <br />
+                    ТС (как с внешней, так и с внутренней стороны) не имею, все работы приняты мною в полном объёме, качество мною
                     проверено; само транспортное средство, ключи от него и документы на ТС от Подрядчика получила(а); с
                     правилами оказания услуг по ремонту ТС согласно СТБ 1175-2011 ознакомлен(а), содержание мне понятно.
                     Гарантийные обязательства на работы выполняются исполнителем только при предъявлении ТС, акта
                     выполненных работ на проведённые работы и техпаспорта (доверенности). ТС - транспортное средство, автомобиль.
                 </div>
+                <br />
             </div>
 
             <br/>
@@ -146,6 +149,7 @@ const ActPage = ({customerData}) => {
             <div>
                 <div className="biggest bold margin-bottom-10">Заказчик (представитель)</div>
                 <div>ТС принял, с условиями и обязанностями ознакомлен.</div>
+                <br />
                 <div style={{
                     display: 'flex',
                     flexDirection: 'row',
