@@ -59,7 +59,6 @@ const ActPage = ({customerData}) => {
                     <span className="bold biggest margin-bottom-10">Обнаруженные недостатки: </span>
                     {customerData.discoveredFlaws || ''}
                 </div>
-                <br />
             </div>
 
             <div>
