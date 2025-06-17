@@ -1,11 +1,12 @@
 import './App.css';
 import printJS from "print-js";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
 import {Button, Input, Radio} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
+import {EditTwoTone, FileAddTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
 
 const fileExtention = '.json';
 
@@ -55,10 +56,17 @@ const defaultCustomerData = {
 }
 
 function App() {
+    const fileInputRef = useRef(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShowAct, setIsShowAct] = useState(false);
 
     const [customerData, setCustomerData] = useState(defaultCustomerData);
+
+    const handleButtonClick = () => {
+        fileInputRef?.current?.input?.click();
+    };
+
+
     const handlePrintRequest = () => {
         printJS({
             printable: 'printableRequest',
@@ -96,50 +104,58 @@ function App() {
     };
 
     return (
-        <div>
-            {
-                !isShowAct
-                    ? (<RequestPage customerData={customerData}/>)
-                    : (<ActPage customerData={customerData} />)
-            }
-
-            <div className="buttons">
-                <div>
-                    <Button type="primary" onClick={() => setIsModalOpen(!isModalOpen)}>Редактировать данные</Button>
-                    {!isShowAct && <Button type="dashed" onClick={handlePrintRequest}>Печать заявки</Button>}
-                    {isShowAct && <Button type="dashed" onClick={handlePrintAct}>Печать акта</Button>}
-                    <Button onClick={() => setCustomerData(defaultCustomerData)}>Очистить</Button>
-                </div>
-                <div>
-                    <Button
-                        onClick={
-                            () => saveJsonToFile(
-                                customerData,
-                                `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${fileExtention}`
-                            )}>
-                        Сохранить данные
-                    </Button>
-
-                    <Input type="file" accept=".json" onChange={handleFileUpload}/>
+        <>
+            <div style={{
+                position: "fixed",
+                height: "3vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+                paddingTop: "10px",
+            }}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingRight: "50px",
+                    gap: "15px",
+                    alignItems: "center"
+                }}>
+                    <EditTwoTone onClick={() => setIsModalOpen(!isModalOpen)} className="action-button"/>
+                    <PrinterTwoTone onClick={isShowAct ? handlePrintAct : handlePrintRequest} className="action-button"/>
+                    <SaveTwoTone
+                        onClick={() => saveJsonToFile(
+                            customerData,
+                            `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${fileExtention}`
+                        )}
+                        className="action-button"
+                    />
+                    <Input type="file" accept=".json" onChange={handleFileUpload} ref={fileInputRef} style={{ display: "none" }} />
+                    <FileAddTwoTone onClick={handleButtonClick} className="action-button"/>
+                    <Radio.Group
+                        block
+                        options={modeOptions}
+                        defaultValue="request"
+                        optionType="button"
+                        buttonStyle="solid"
+                        onChange={() => setIsShowAct(!isShowAct)}
+                    />
                 </div>
             </div>
-            <Radio.Group
-                block
-                options={modeOptions}
-                defaultValue="request"
-                optionType="button"
-                buttonStyle="solid"
-                style={{position: 'fixed', top: '170px', right: '50px'}}
-                onChange={() => setIsShowAct(!isShowAct)}
-            />
+            <div>
+                {
+                    !isShowAct
+                        ? (<RequestPage customerData={customerData}/>)
+                        : (<ActPage customerData={customerData}/>)
+                }
 
-            <EditModal
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-                customerData={customerData}
-                setCustomerData={setCustomerData}
-            />
-        </div>
+                <EditModal
+                    isModalOpen={isModalOpen}
+                    setIsModalOpen={setIsModalOpen}
+                    customerData={customerData}
+                    setCustomerData={setCustomerData}
+                />
+            </div>
+        </>
     );
 }
 
