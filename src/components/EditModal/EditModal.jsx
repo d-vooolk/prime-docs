@@ -94,7 +94,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             discoveredFlaws: form.getFieldValue("discoveredFlaws"),
             valueJustification: form.getFieldValue("valueJustification"),
             fullPrice: form.getFieldValue("fullPrice"),
-            workEnd: form.getFieldValue("workEnd").$d?.toLocaleDateString(),
+            workEnd: form.getFieldValue("workEnd")?.$d?.toLocaleDateString(),
             warranty: form.getFieldValue("warranty"),
             module: form.getFieldValue("module"),
         }))
@@ -285,7 +285,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                 <Form.Item
                     label="Дата окончания работ"
                     name="workEnd"
-                    rules={[{required: true}]}
                 >
                     <DatePicker
                         placeholder={["Дата окончания работ"]}
