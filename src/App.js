@@ -7,53 +7,7 @@ import {Input, notification, Radio} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
 import {EditTwoTone, FileAddTwoTone, MessageTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
-
-const fileExtention = '.json';
-
-const modeOptions = [
-    {
-        label: 'Заявка',
-        value: 'request',
-    },
-    {
-        label: 'Акт',
-        value: 'act',
-    },
-];
-
-const printSettings = {
-    type: 'html',
-    targetStyles: ['*'],
-    showModal: true,
-    header: null,
-    footer: null,
-};
-
-const defaultCustomerData = {
-    requestNumber: '',
-    name: '',
-    phone: '',
-    carData: {
-        name: '',
-        number: '',
-        vin: '',
-        year: '',
-        km: '',
-    },
-    jobReason: '',
-    firstPrice: '',
-    dateRange: '',
-    serviceman: '',
-    requestDate: '',
-    customerRepresentative: '',
-
-    discoveredFlaws: '',
-    valueJustification: '',
-    fullPrice: '',
-    workEnd: '',
-    warranty: '',
-    module: '',
-}
+import {DEFAULT_CUSTOMER_DATA, FILE_EXTENTION, MODE_OPTIONS, PRINT_SETTINGS} from "./constants/constants";
 
 const Context = React.createContext({ name: 'Default' });
 
@@ -62,15 +16,24 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShowAct, setIsShowAct] = useState(false);
 
-    const [customerData, setCustomerData] = useState(defaultCustomerData);
+    const [customerData, setCustomerData] = useState(DEFAULT_CUSTOMER_DATA);
 
     const [api, contextHolder] = notification.useNotification();
 
-    const openNotification = (placement, text) => {
+    const openNotification = (text, error) => {
         api.info({
             message: text,
-            description: <Context.Consumer>{({ name }) => `Клиент уведомлён о готовности автомобиля. Хорошая работа!`}</Context.Consumer>,
-            placement,
+            description: <Context.Consumer>
+                            {
+                                () => {
+                                    if (error) {
+                                        return `Произошла ошибка: ${error}`
+                                    }
+                                    return `Клиент уведомлён о готовности автомобиля. Хорошая работа!`
+                                }
+                            }
+                        </Context.Consumer>,
+            placement: "topRight",
         });
     };
 
@@ -82,7 +45,7 @@ function App() {
 
     async function sendSMS(phone) {
         try {
-            const response = await fetch('http://217.12.37.199:3008/api/sms/send', {
+            const response = await fetch('https://217.12.37.199:3008/api/sms/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -94,17 +57,16 @@ function App() {
             });
 
             if (!response.ok) {
-                openNotification("topRight", `HTTP error! status: ${response.status}`);
-                throw new Error(`HTTP error! status: ${response.status}`);
+                openNotification(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
             console.log('Успешно отправлено:', data);
-            openNotification("topRight", 'Успешно отправлено');
+            openNotification('Успешно отправлено');
             return data;
 
         } catch (error) {
-            openNotification("topRight", 'Ошибка при отправке');
+            openNotification('Ошибка при отправке', error);
             console.error('Ошибка при отправке:', error);
             return { success: false, error: error.message };
         }
@@ -114,19 +76,19 @@ function App() {
     const handlePrintRequest = () => {
         printJS({
             printable: 'printableRequest',
-            ...printSettings,
+            ...PRINT_SETTINGS,
         });
     };
 
     const handlePrintAct = () => {
         printJS({
             printable: 'printableAct',
-            ...printSettings,
+            ...PRINT_SETTINGS,
         });
     };
 
     const handleFileUpload = (event) => {
-        const file = event.target.files[0]; // Получаем выбранный файл
+        const file = event.target.files[0];
 
         if (file && file.type === 'application/json') {
             const reader = new FileReader();
@@ -170,7 +132,7 @@ function App() {
                     <SaveTwoTone
                         onClick={() => saveJsonToFile(
                             customerData,
-                            `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${fileExtention}`
+                            `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${FILE_EXTENTION}`
                         )}
                         className="action-button"
                     />
@@ -178,7 +140,7 @@ function App() {
                     <FileAddTwoTone onClick={handleButtonClick} className="action-button"/>
                     <Radio.Group
                         block
-                        options={modeOptions}
+                        options={MODE_OPTIONS}
                         defaultValue="request"
                         optionType="button"
                         buttonStyle="solid"
