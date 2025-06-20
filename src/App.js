@@ -45,7 +45,7 @@ function App() {
 
     async function sendSMS(phone) {
         try {
-            const response = await fetch('https://prime-auto.by:3008/api/sms/send', {
+            const response = await fetch('http://prime-auto.by:3008/api/sms/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
