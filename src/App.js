@@ -1,9 +1,9 @@
 import './App.css';
 import printJS from "print-js";
-import React, {useRef, useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
-import {Input, Radio} from "antd";
+import {Input, notification, Radio} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
 import {EditTwoTone, FileAddTwoTone, MessageTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
@@ -55,12 +55,26 @@ const defaultCustomerData = {
     module: '',
 }
 
+const Context = React.createContext({ name: 'Default' });
+
 function App() {
     const fileInputRef = useRef(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShowAct, setIsShowAct] = useState(false);
 
     const [customerData, setCustomerData] = useState(defaultCustomerData);
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotification = (placement, text) => {
+        api.info({
+            message: text,
+            description: <Context.Consumer>{({ name }) => `Клиент уведомлён о готовности автомобиля. Хорошая работа!`}</Context.Consumer>,
+            placement,
+        });
+    };
+
+    const contextValue = useMemo(() => ({ name: 'Ant Design' }), []);
 
     const handleButtonClick = () => {
         fileInputRef?.current?.input?.click();
@@ -80,14 +94,17 @@ function App() {
             });
 
             if (!response.ok) {
+                openNotification("topRight", `HTTP error! status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
             console.log('Успешно отправлено:', data);
+            openNotification("topRight", 'Успешно отправлено');
             return data;
 
         } catch (error) {
+            openNotification("topRight", 'Ошибка при отправке');
             console.error('Ошибка при отправке:', error);
             return { success: false, error: error.message };
         }
@@ -131,7 +148,8 @@ function App() {
     };
 
     return (
-        <>
+            <Context.Provider value={contextValue}>
+                {contextHolder}
             <div style={{
                 position: "fixed",
                 height: "3vh",
@@ -166,7 +184,7 @@ function App() {
                         buttonStyle="solid"
                         onChange={() => setIsShowAct(!isShowAct)}
                     />
-                    <MessageTwoTone className="action-button" onClick={() => sendSMS(customerData?.phone)} />
+                    { customerData?.phone && <MessageTwoTone className="action-button" onClick={() => sendSMS(customerData?.phone)} /> }
                 </div>
             </div>
             <div>
@@ -183,7 +201,7 @@ function App() {
                     setCustomerData={setCustomerData}
                 />
             </div>
-        </>
+        </Context.Provider>
     );
 }
 
