@@ -1,12 +1,12 @@
 import './App.css';
 import printJS from "print-js";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
-import {Button, Input, Radio} from "antd";
+import {Input, Radio} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
-import {EditTwoTone, FileAddTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
+import {EditTwoTone, FileAddTwoTone, MessageTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
 
 const fileExtention = '.json';
 
@@ -65,6 +65,33 @@ function App() {
     const handleButtonClick = () => {
         fileInputRef?.current?.input?.click();
     };
+
+    async function sendSMS(phone) {
+        try {
+            const response = await fetch('http://217.12.37.199:3008/api/sms/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phone: phone,
+                    message: "Здравствуйте, ваш автомобиль готов. Можете забрать его с 10:00 до 19:00."
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Успешно отправлено:', data);
+            return data;
+
+        } catch (error) {
+            console.error('Ошибка при отправке:', error);
+            return { success: false, error: error.message };
+        }
+    }
 
 
     const handlePrintRequest = () => {
@@ -139,6 +166,7 @@ function App() {
                         buttonStyle="solid"
                         onChange={() => setIsShowAct(!isShowAct)}
                     />
+                    <MessageTwoTone className="action-button" onClick={() => sendSMS(customerData?.phone)} />
                 </div>
             </div>
             <div>
