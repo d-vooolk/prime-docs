@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "restart": "pm2 restart docs-prime-auto",
-    "deploy": "git pull && npm install && npm run restart"
+    "deploy": "git pull && npm install && npm run build && npm run restart"
   },
   "eslintConfig": {
     "extends": [
