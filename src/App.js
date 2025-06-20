@@ -45,7 +45,7 @@ function App() {
 
     async function sendSMS(phone) {
         try {
-            const response = await fetch('http://217.12.37.199:3008/api/sms/send', {
+            const response = await fetch('https://cors-anywhere.herokuapp.com/http://217.12.37.199:3008/api/sms/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
