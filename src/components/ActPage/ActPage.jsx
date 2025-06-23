@@ -1,8 +1,6 @@
 import React from 'react';
 import './ActPage.css';
-
-const emptyData = '_________________';
-const spaceForCredentions = '_________________________';
+import {emptyData, spaceForCredentions} from "../../utils/constants";
 
 const ActPage = ({customerData}) => {
 

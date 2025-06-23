@@ -1,69 +1,7 @@
 import React from "react";
 import {Button, DatePicker, Form, Input, Modal, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
-
-const dateFormat = 'DD-MM-YYYY';
-
-const servicemanOptions = [
-    {
-        value: "Томилин Руслан Андреевич",
-        label: "Томилин Руслан Андреевич"
-    },
-    {
-        value: "Волк Дмитрий Иванович",
-        label: "Волк Дмитрий Иванович"
-    }
-]
-
-const warrantyOptions = [
-    {
-        value: 'бессрочная до момента переоформления авто, при условии исправления недостатков, перечисленных в графе Обнаруженные недостатки.',
-        label: 'бессрочная',
-    },
-    {
-        value: '1 год',
-        label: '1 год',
-    },
-    {
-        value: 'без гарантии',
-        label: 'без гарантии',
-    },
-];
-
-const moduleOptions = [
-    {
-        value: 'Vision Advance',
-        label: 'Vision Advance',
-    },
-    {
-        value: 'Vision Ultimate',
-        label: 'Vision Ultimate',
-    },
-    {
-        value: 'Sanvi F50',
-        label: 'Sanvi F50',
-    },
-    {
-        value: 'Aozoom A6+',
-        label: 'Aozoom A6+',
-    },
-    {
-        value: 'Aozoom DK200',
-        label: 'Aozoom DK200',
-    },
-    {
-        value: 'Sunrise Mini',
-        label: 'Sunrise Mini',
-    },
-    {
-        value: 'UPS Maker',
-        label: 'UPS Maker',
-    },
-    {
-        value: 'клиентские',
-        label: 'клиентские',
-    },
-];
+import {DATE_FORMAT, moduleOptions, servicemanOptions, warrantyOptions} from "../../constants/constants";
 
 const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData}) => {
     const [form] = useForm();
@@ -221,7 +159,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     <RangePicker
                         placeholder={["Дата начала", "Дата окончания работ"]}
                         language="ru-RU"
-                        format={dateFormat}
+                        format={DATE_FORMAT}
                     />
                 </Form.Item>
 
@@ -289,7 +227,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     <DatePicker
                         placeholder={["Дата окончания работ"]}
                         language="ru-RU"
-                        format={dateFormat}
+                        format={DATE_FORMAT}
                     />
                 </Form.Item>
 
