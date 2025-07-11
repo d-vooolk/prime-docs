@@ -6,8 +6,16 @@ import EditModal from "./components/EditModal/EditModal";
 import {Input, notification, Radio} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
-import {EditTwoTone, FileAddTwoTone, MessageTwoTone, PrinterTwoTone, SaveTwoTone} from "@ant-design/icons";
+import {
+    EditTwoTone,
+    FileAddTwoTone,
+    MessageTwoTone,
+    PrinterTwoTone,
+    SaveTwoTone, SmileTwoTone
+} from "@ant-design/icons";
 import {DEFAULT_CUSTOMER_DATA, FILE_EXTENTION, MODE_OPTIONS, PRINT_SETTINGS} from "./constants/constants";
+import {FEEDBACK_LINK, FEEDBACK_REQUEST, JOB_DONE} from "./utils/smsConstants";
+import {sendSMS} from "./utils/sms";
 
 const Context = React.createContext({ name: 'Default' });
 
@@ -29,7 +37,7 @@ function App() {
                                     if (error) {
                                         return `Произошла ошибка: ${error}`
                                     }
-                                    return `Клиент уведомлён о готовности автомобиля. Хорошая работа!`
+                                    return `Клиент уведомлён. Хорошая работа!`
                                 }
                             }
                         </Context.Consumer>,
@@ -42,35 +50,6 @@ function App() {
     const handleButtonClick = () => {
         fileInputRef?.current?.input?.click();
     };
-
-    async function sendSMS(phone) {
-        try {
-            const response = await fetch('https://sms.prime-auto.by/api/sms/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    phone: phone,
-                    message: "Здравствуйте, ваш автомобиль готов. Можете забрать его с 10:00 до 19:00."
-                })
-            });
-
-            if (!response.ok) {
-                openNotification(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('Успешно отправлено:', data);
-            openNotification('Успешно отправлено');
-            return data;
-
-        } catch (error) {
-            openNotification('Ошибка при отправке', error);
-            console.error('Ошибка при отправке:', error);
-            return { success: false, error: error.message };
-        }
-    }
 
 
     const handlePrintRequest = () => {
@@ -146,7 +125,24 @@ function App() {
                         buttonStyle="solid"
                         onChange={() => setIsShowAct(!isShowAct)}
                     />
-                    { customerData?.phone && <MessageTwoTone className="action-button" onClick={() => sendSMS(customerData?.phone)} /> }
+                    {
+                        customerData?.phone
+                        && <MessageTwoTone
+                                className="action-button"
+                                onClick={() => sendSMS(customerData?.phone, JOB_DONE, openNotification)}
+                            />
+                    }
+
+                    {
+                        customerData?.phone
+                        && <SmileTwoTone
+                            className="action-button"
+                            onClick={
+                                () => sendSMS(customerData?.phone, FEEDBACK_REQUEST, openNotification)
+                                    .then(() => sendSMS(customerData?.phone, FEEDBACK_LINK, openNotification))
+                            }
+                            />
+                    }
                 </div>
             </div>
             <div>
