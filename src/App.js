@@ -3,7 +3,7 @@ import printJS from "print-js";
 import React, {useMemo, useRef, useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
-import {Input, notification, Radio} from "antd";
+import {Input, notification, Radio, Tooltip} from "antd";
 import ActPage from "./components/ActPage/ActPage";
 import {saveJsonToFile} from "./utils/saveFile";
 import {
@@ -106,17 +106,29 @@ function App() {
                     gap: "15px",
                     alignItems: "center"
                 }}>
-                    <EditTwoTone onClick={() => setIsModalOpen(!isModalOpen)} className="action-button"/>
-                    <PrinterTwoTone onClick={isShowAct ? handlePrintAct : handlePrintRequest} className="action-button"/>
-                    <SaveTwoTone
-                        onClick={() => saveJsonToFile(
-                            customerData,
-                            `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${FILE_EXTENTION}`
-                        )}
-                        className="action-button"
-                    />
+                    <Tooltip placement="bottom" title="Редактировать данные">
+                        <EditTwoTone onClick={() => setIsModalOpen(!isModalOpen)} className="action-button"/>
+                    </Tooltip>
+
+                    <Tooltip placement="bottom" title="Распечатать">
+                        <PrinterTwoTone onClick={isShowAct ? handlePrintAct : handlePrintRequest} className="action-button"/>
+                    </Tooltip>
+
+                    <Tooltip placement="bottom" title="Сохранить клиента">
+                        <SaveTwoTone
+                            onClick={() => saveJsonToFile(
+                                customerData,
+                                `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${FILE_EXTENTION}`
+                            )}
+                            className="action-button"
+                        />
+                    </Tooltip>
+
                     <Input type="file" accept=".json" onChange={handleFileUpload} ref={fileInputRef} style={{ display: "none" }} />
-                    <FileAddTwoTone onClick={handleButtonClick} className="action-button"/>
+                    <Tooltip placement="bottom" title="Загрузить клиента">
+                        <FileAddTwoTone onClick={handleButtonClick} className="action-button"/>
+                    </Tooltip>
+
                     <Radio.Group
                         block
                         options={MODE_OPTIONS}
@@ -127,21 +139,25 @@ function App() {
                     />
                     {
                         customerData?.phone
-                        && <MessageTwoTone
+                        && <Tooltip placement="bottom" title="Оповестить о готовности авто">
+                            <MessageTwoTone
                                 className="action-button"
                                 onClick={() => sendSMS(customerData?.phone, JOB_DONE, openNotification)}
                             />
+                        </Tooltip>
                     }
 
                     {
                         customerData?.phone
-                        && <SmileTwoTone
-                            className="action-button"
-                            onClick={
-                                () => sendSMS(customerData?.phone, FEEDBACK_REQUEST, openNotification)
-                                    .then(() => sendSMS(customerData?.phone, FEEDBACK_LINK, openNotification))
-                            }
+                        && <Tooltip placement="bottom" title="Запросить отзыв">
+                            <SmileTwoTone
+                                className="action-button"
+                                onClick={
+                                    () => sendSMS(customerData?.phone, FEEDBACK_REQUEST, openNotification)
+                                        .then(() => sendSMS(customerData?.phone, FEEDBACK_LINK, openNotification))
+                                }
                             />
+                        </Tooltip>
                     }
                 </div>
             </div>
