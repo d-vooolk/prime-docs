@@ -74,7 +74,7 @@ function App() {
 
             reader.onload = (e) => {
                 try {
-                    const parsedData = JSON.parse(e.target.result);
+                    const parsedData = JSON.parse(e?.target?.result);
                     setCustomerData(parsedData);
                 } catch (error) {
                     console.error('Ошибка при чтении файла:', error);
@@ -82,7 +82,7 @@ function App() {
                 }
             };
 
-            reader.readAsText(file); // Читаем файл как текст
+            reader.readAsText(file);
         } else {
             alert('Пожалуйста, выберите JSON-файл.');
         }
@@ -118,7 +118,7 @@ function App() {
                         <SaveTwoTone
                             onClick={() => saveJsonToFile(
                                 customerData,
-                                `${customerData.name}-${customerData.carData.name}-${customerData.dateRange[0]}${FILE_EXTENTION}`
+                                `${customerData?.name}-${customerData?.carData.name}-${customerData?.dateRange[0]}${FILE_EXTENTION}`
                             )}
                             className="action-button"
                         />

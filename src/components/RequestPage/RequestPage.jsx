@@ -8,11 +8,11 @@ const RequestPage = ({customerData}) => {
     const tableDataSource = [
         {
             key: '1',
-            carName: customerData.carData.name,
-            number: customerData.carData.number,
-            vin: customerData.carData.vin,
-            year: customerData.carData.year,
-            km: customerData.carData.km,
+            carName: customerData?.carData?.name,
+            number: customerData?.carData?.number,
+            vin: customerData?.carData?.vin,
+            year: customerData?.carData?.year,
+            km: customerData?.carData?.km,
         },
     ];
 
@@ -20,10 +20,10 @@ const RequestPage = ({customerData}) => {
         <div id="printableRequest">
             <div className="request-number">
                 Заявка № ПА-{
-                customerData.dateRange[0]
+                customerData?.dateRange[0]
                     ?.split('.')
                     ?.join('') || ''
-            }-{customerData.requestNumber}
+            }-{customerData?.requestNumber}
             </div>
 
             <div className="header">
@@ -37,8 +37,8 @@ const RequestPage = ({customerData}) => {
                 </div>
                 <div className="customer-data">
                     <div className="customer-worker">Заказчик:</div>
-                    <div className="bold">ФИО: {customerData.name || emptyData}</div>
-                    <div>Телефон: {customerData.phone || emptyData}</div>
+                    <div className="bold">ФИО: {customerData?.name || emptyData}</div>
+                    <div>Телефон: {customerData?.phone || emptyData}</div>
                 </div>
             </div>
 
@@ -59,13 +59,13 @@ const RequestPage = ({customerData}) => {
                     описание этих неисправеностей)
                 </div>
                 <div>
-                    <div className="margin-bottom-20">{customerData.jobReason}</div>
+                    <div className="margin-bottom-20">{customerData?.jobReason}</div>
                 </div>
             </div>
 
             <div className="price-date padding-x-10">
                 <div className="bold biggest margin-bottom-20">Предварительная стоимость заказа:</div>
-                <div className="bold biggest margin-bottom-20">{customerData.firstPrice || 0} бел. руб.</div>
+                <div className="bold biggest margin-bottom-20">{customerData?.firstPrice || 0} бел. руб.</div>
             </div>
 
             <div className="price-date padding-x-10">
@@ -103,7 +103,7 @@ const RequestPage = ({customerData}) => {
                     justifyContent: 'space-between',
                     alignItems: 'center'
                 }}>
-                    <div>Мастер {customerData.serviceman}</div>
+                    <div>Мастер {customerData?.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[0]}</div>
                 </div>
@@ -119,7 +119,7 @@ const RequestPage = ({customerData}) => {
                     justifyContent: 'space-between',
                     alignItems: 'center'
                 }}>
-                    <div>{customerData.customerRepresentative}</div>
+                    <div>{customerData?.customerRepresentative}</div>
                     <div>{spaceForCredentions}</div>
                     <div>{customerData?.dateRange?.[0]}</div>
                 </div>
