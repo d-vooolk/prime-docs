@@ -43,7 +43,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             open={isModalOpen}
             onOk={() => okHandler()}
             onCancel={() => cancelHandler()}
-            width={1000}
+            width={800}
         >
             <Form
                 name="basic"
