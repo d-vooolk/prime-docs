@@ -26,7 +26,6 @@ export const DEFAULT_CUSTOMER_DATA = {
     carData: {
         name: '',
         number: '',
-        vin: '',
         year: '',
         km: '',
     },
@@ -49,20 +48,12 @@ export const DATE_FORMAT = 'DD-MM-YYYY';
 
 export const servicemanOptions = [
     {
-        value: "Томилин Руслан Андреевич",
-        label: "Томилин Руслан Андреевич"
-    },
-    {
         value: "Волк Дмитрий Иванович",
         label: "Волк Дмитрий Иванович"
-    }
+    },
 ]
 
 export const warrantyOptions = [
-    {
-        value: 'бессрочная до момента переоформления авто, при условии исправления недостатков, перечисленных в графе Обнаруженные недостатки.',
-        label: 'бессрочная',
-    },
     {
         value: '1 год',
         label: '1 год',
@@ -107,6 +98,3 @@ export const moduleOptions = [
         label: 'клиентские',
     },
 ];
-
-export const emptyData = '_________________';
-export const spaceForCredentions = '_________________________';

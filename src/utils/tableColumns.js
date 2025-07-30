@@ -10,11 +10,6 @@ export const tableColumns = [
         key: 'number',
     },
     {
-        title: 'VIN / заводской номер',
-        dataIndex: 'vin',
-        key: 'vin',
-    },
-    {
         title: 'Год выпуска',
         dataIndex: 'year',
         key: 'year',

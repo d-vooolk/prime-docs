@@ -10,7 +10,6 @@ const RequestPage = ({customerData}) => {
             key: '1',
             carName: customerData.carData.name,
             number: customerData.carData.number,
-            vin: customerData.carData.vin,
             year: customerData.carData.year,
             km: customerData.carData.km,
         },
@@ -103,7 +102,7 @@ const RequestPage = ({customerData}) => {
                     justifyContent: 'space-between',
                     alignItems: 'center'
                 }}>
-                    <div>Мастер {customerData.serviceman}</div>
+                    <div>Мастер-приёмщик {customerData.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[0]}</div>
                 </div>

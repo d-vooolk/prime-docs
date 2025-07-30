@@ -34,7 +34,6 @@ const ActPage = ({customerData}) => {
                 <div>
                     { customerData?.carData?.name && <span><b>Автомобиль:</b> {customerData?.carData?.name}, </span> }
                     { customerData?.carData?.number && <span><b>гос. номер:</b> {customerData?.carData?.number}, </span> }
-                    { customerData?.carData?.vin && <span><b>VIN:</b> {customerData?.carData?.vin}, </span> }
                     { customerData?.carData?.year && <span><b>год. вып.:</b> {customerData?.carData?.year}, </span> }
                     { customerData?.carData?.km && <span><b>пробег:</b> {customerData?.carData?.km}</span> }
                 </div>
@@ -137,7 +136,7 @@ const ActPage = ({customerData}) => {
                     justifyContent: 'space-between',
                     alignItems: 'center'
                 }}>
-                    <div>Мастер {customerData.serviceman}</div>
+                    <div>Мастер-приёмщик {customerData.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
                     <div>{customerData?.dateRange?.[1]}</div>
                 </div>
