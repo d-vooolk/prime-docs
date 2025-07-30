@@ -3,6 +3,7 @@ import './RequestPage.css';
 import {Table} from "antd";
 import {emptyData, spaceForCredentions} from "../../utils/constants";
 import {tableColumns} from "../../utils/tableColumns";
+import {generateRandomCode} from "../../utils/randomIndexForDocs";
 
 const RequestPage = ({customerData}) => {
     const tableDataSource = [
@@ -15,14 +16,16 @@ const RequestPage = ({customerData}) => {
         },
     ];
 
+    const date = new Date().toLocaleDateString();
+
     return (
         <div id="printableRequest">
             <div className="request-number">
                 Заявка № ПА-{
-                customerData?.dateRange[0]
+                date
                     ?.split('.')
                     ?.join('') || ''
-            }-{customerData?.requestNumber}
+            }-{generateRandomCode()} от {date}
             </div>
 
             <div className="header">
@@ -67,11 +70,6 @@ const RequestPage = ({customerData}) => {
                 <div className="bold biggest margin-bottom-20">{customerData?.firstPrice || 0} бел. руб.</div>
             </div>
 
-            <div className="price-date padding-x-10">
-                <div className="bold biggest margin-bottom-20">Планируемая дата выполнения заказа:</div>
-                <div className="bold biggest margin-bottom-20">{customerData?.dateRange?.[1] || 'не задано'}</div>
-            </div>
-
             <div>
                 Дополнительные работы, необходимость в которых может возникнуть в процессе исполнения Заказа, их <br />
                 стоимость и сроки выполнения Исполнитель согласовывает с Заказчиком/Представителем устно и/или <br />
@@ -104,7 +102,7 @@ const RequestPage = ({customerData}) => {
                 }}>
                     <div>Мастер-приёмщик {customerData.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
-                    <div>{customerData?.dateRange?.[0]}</div>
+                    <div>{date}</div>
                 </div>
             </div>
 
@@ -120,7 +118,7 @@ const RequestPage = ({customerData}) => {
                 }}>
                     <div>{customerData?.customerRepresentative}</div>
                     <div>{spaceForCredentions}</div>
-                    <div>{customerData?.dateRange?.[0]}</div>
+                    <div>{date}</div>
                 </div>
             </div>
         </div>

@@ -1,17 +1,19 @@
 import React from 'react';
 import './ActPage.css';
 import {emptyData, spaceForCredentions} from "../../utils/constants";
+import {generateRandomCode} from "../../utils/randomIndexForDocs";
 
 const ActPage = ({customerData}) => {
+    const date = new Date().toLocaleDateString();
 
     return (
         <div id="printableAct">
             <div className="request-number">
                 Акт выполненных работ № ПА-{
-                customerData.dateRange[0]
+                date
                     ?.split('.')
                     ?.join('') || ''
-            }-{customerData.requestNumber}
+            }-{generateRandomCode()} от {date}
             </div>
 
             <div className="header">
@@ -138,7 +140,7 @@ const ActPage = ({customerData}) => {
                 }}>
                     <div>Мастер-приёмщик {customerData.serviceman}</div>
                     <div>{spaceForCredentions} БП</div>
-                    <div>{customerData?.dateRange?.[1]}</div>
+                    <div>{date}</div>
                 </div>
             </div>
 
@@ -155,7 +157,7 @@ const ActPage = ({customerData}) => {
                 }}>
                     <div>{customerData.customerRepresentative}</div>
                     <div>{spaceForCredentions}</div>
-                    <div>{customerData?.dateRange?.[1]}</div>
+                    <div>{date}</div>
                 </div>
             </div>
         </div>

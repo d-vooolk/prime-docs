@@ -20,7 +20,6 @@ export const PRINT_SETTINGS = {
 };
 
 export const DEFAULT_CUSTOMER_DATA = {
-    requestNumber: '',
     name: '',
     phone: '',
     carData: {
@@ -31,9 +30,7 @@ export const DEFAULT_CUSTOMER_DATA = {
     },
     jobReason: '',
     firstPrice: '',
-    dateRange: '',
     serviceman: '',
-    requestDate: '',
     customerRepresentative: '',
 
     discoveredFlaws: '',

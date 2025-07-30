@@ -9,13 +9,8 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
     const {TextArea} = Input;
 
     const okHandler = () => {
-        const date = [
-            form?.getFieldValue('firstDateToDoneWork')?.[0]?.$d?.toLocaleDateString(),
-            form?.getFieldValue('firstDateToDoneWork')?.[1]?.$d?.toLocaleDateString()
-        ];
         setCustomerData((prevState) => ({
             ...prevState,
-            requestNumber: form.getFieldValue("requestNumber"),
             name: form.getFieldValue("name"),
             phone: form.getFieldValue("phone"),
             carData: {
@@ -26,9 +21,7 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             },
             jobReason: form.getFieldValue("jobReason"),
             firstPrice: form.getFieldValue("firstPrice"),
-            dateRange: date,
             serviceman: form.getFieldValue("serviceman"),
-            requestDate: form.getFieldValue("requestDate"),
             customerRepresentative: form.getFieldValue("customerRepresentative"),
             discoveredFlaws: form.getFieldValue("discoveredFlaws"),
             valueJustification: form.getFieldValue("valueJustification"),
@@ -44,8 +37,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
         form.resetFields();
         setIsModalOpen(false);
     }
-
-    const {RangePicker} = DatePicker;
 
     return (
         <Modal
@@ -64,15 +55,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                 form={form}
             >
                 <div>
-                    <Form.Item
-                        label="Порядковый номер"
-                        name="requestNumber"
-                        rules={[{required: true}]}
-                        initialValue={customerData.requestNumber}
-                    >
-                        <Input/>
-                    </Form.Item>
-
                     <Form.Item
                         label="ФИО"
                         name="name"
@@ -143,18 +125,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                         initialValue={customerData.firstPrice}
                     >
                         <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Предв. дата выполн."
-                        name="firstDateToDoneWork"
-                        rules={[{required: true}]}
-                    >
-                        <RangePicker
-                            placeholder={["Дата начала", "Дата окончания работ"]}
-                            language="ru-RU"
-                            format={DATE_FORMAT}
-                        />
                     </Form.Item>
 
                     <Form.Item

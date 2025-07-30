@@ -118,7 +118,7 @@ function App() {
                         <SaveTwoTone
                             onClick={() => saveJsonToFile(
                                 customerData,
-                                `${customerData?.name}-${customerData?.carData.name}-${customerData?.dateRange[0]}${FILE_EXTENTION}`
+                                `${customerData?.name}-${customerData?.carData.name}-${customerData?.startDate}${FILE_EXTENTION}`
                             )}
                             className="action-button"
                         />
