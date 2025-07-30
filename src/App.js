@@ -25,9 +25,7 @@ function App() {
     const fileInputRef = useRef(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShowAct, setIsShowAct] = useState(false);
-
     const [customerData, setCustomerData] = useState(DEFAULT_CUSTOMER_DATA);
-
     const [api, contextHolder] = notification.useNotification();
 
     const openNotification = (text, error) => {
