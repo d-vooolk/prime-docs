@@ -19,6 +19,8 @@ import {sendSMS} from "./utils/sms";
 
 const Context = React.createContext({ name: 'Default' });
 
+const date = new Date().toLocaleDateString();
+
 function App() {
     const fileInputRef = useRef(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -164,8 +166,8 @@ function App() {
             <div>
                 {
                     !isShowAct
-                        ? (<RequestPage customerData={customerData}/>)
-                        : (<ActPage customerData={customerData}/>)
+                        ? (<RequestPage customerData={customerData} date={date}/>)
+                        : (<ActPage customerData={customerData} date={date}/>)
                 }
 
                 <EditModal

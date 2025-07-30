@@ -3,9 +3,7 @@ import './ActPage.css';
 import {emptyData, spaceForCredentions} from "../../utils/constants";
 import {generateRandomCode} from "../../utils/randomIndexForDocs";
 
-const ActPage = ({customerData}) => {
-    const date = new Date().toLocaleDateString();
-
+const ActPage = ({customerData, date}) => {
     return (
         <div id="printableAct">
             <div className="request-number">

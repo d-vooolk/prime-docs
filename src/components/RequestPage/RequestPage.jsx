@@ -5,7 +5,7 @@ import {emptyData, spaceForCredentions} from "../../utils/constants";
 import {tableColumns} from "../../utils/tableColumns";
 import {generateRandomCode} from "../../utils/randomIndexForDocs";
 
-const RequestPage = ({customerData}) => {
+const RequestPage = ({customerData, date}) => {
     const tableDataSource = [
         {
             key: '1',
@@ -15,8 +15,6 @@ const RequestPage = ({customerData}) => {
             km: customerData.carData.km,
         },
     ];
-
-    const date = new Date().toLocaleDateString();
 
     return (
         <div id="printableRequest">
