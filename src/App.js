@@ -88,6 +88,11 @@ function App() {
         }
     };
 
+    const saveJson = () => saveJsonToFile(
+        customerData,
+        `${customerData?.name}-${customerData?.carData.name}-${date}${FILE_EXTENTION}`
+    );
+
     return (
             <Context.Provider value={contextValue}>
                 {contextHolder}
@@ -116,10 +121,7 @@ function App() {
 
                     <Tooltip placement="bottom" title="Сохранить клиента">
                         <SaveTwoTone
-                            onClick={() => saveJsonToFile(
-                                customerData,
-                                `${customerData?.name}-${customerData?.carData.name}-${customerData?.startDate}${FILE_EXTENTION}`
-                            )}
+                            onClick={() => saveJson()}
                             className="action-button"
                         />
                     </Tooltip>
