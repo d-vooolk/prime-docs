@@ -43,188 +43,183 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             open={isModalOpen}
             onOk={() => okHandler()}
             onCancel={() => cancelHandler()}
-            width={800}
         >
             <Form
                 name="basic"
-                labelCol={{span: 11}}
+                labelCol={{span: 8}}
                 wrapperCol={{span: 16}}
-                style={{maxWidth: 900, display: "flex", flexDirection: "row", justifyContent: "space-between"}}
+                style={{maxWidth: 800}}
                 initialValues={{remember: true}}
                 autoComplete="true"
                 form={form}
             >
-                <div>
+                <Form.Item
+                    label="ФИО"
+                    name="name"
+                    rules={[{required: true}]}
+                    initialValue={customerData.name}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Телефон"
+                    name="phone"
+                    rules={[{required: true}]}
+                    initialValue={customerData.phone || '+375'}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Автомобиль"
+                    name="carData.name"
+                    rules={[{required: true}]}
+                    initialValue={customerData.carData.name}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Рег знак"
+                    name="carData.number"
+                    rules={[{required: true}]}
+                    initialValue={customerData.carData.number}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Год выпуска"
+                    name="carData.year"
+                    rules={[{required: true}]}
+                    initialValue={customerData.carData.year}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Пробег"
+                    name="carData.km"
+                    rules={[{required: true}]}
+                    initialValue={customerData.carData.km}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Перечень работ"
+                    name="jobReason"
+                    rules={[{required: true}]}
+                    initialValue={customerData.jobReason}
+                >
+                    <TextArea rows={3}/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Предв. стоимость"
+                    name="firstPrice"
+                    rules={[{required: true}]}
+                    initialValue={customerData.firstPrice}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Сотрудник"
+                    name="serviceman"
+                    rules={[{required: true}]}
+                    initialValue={customerData.serviceman || servicemanOptions[0].value}
+                >
+                    <Select
+                        placeholder="Сотрудник"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={servicemanOptions}
+                    />
+                </Form.Item>
+
+                <div className="margin-bottom-20" style={{display: "flex", flexDirection: 'column'}}>
                     <Form.Item
-                        label="ФИО"
-                        name="name"
+                        label="Представитель"
+                        name="customerRepresentative"
                         rules={[{required: true}]}
-                        initialValue={customerData.name}
+                        initialValue={customerData.customerRepresentative}
                     >
                         <Input/>
                     </Form.Item>
-
-                    <Form.Item
-                        label="Телефон"
-                        name="phone"
-                        rules={[{required: true}]}
-                        initialValue={customerData.phone || '+375'}
+                    <Button
+                        onClick={
+                            () => form.setFieldValue('customerRepresentative', form.getFieldValue('name'))
+                        }
                     >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Автомобиль"
-                        name="carData.name"
-                        rules={[{required: true}]}
-                        initialValue={customerData.carData.name}
-                    >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Рег знак"
-                        name="carData.number"
-                        rules={[{required: true}]}
-                        initialValue={customerData.carData.number}
-                    >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Год выпуска"
-                        name="carData.year"
-                        rules={[{required: true}]}
-                        initialValue={customerData.carData.year}
-                    >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Пробег"
-                        name="carData.km"
-                        rules={[{required: true}]}
-                        initialValue={customerData.carData.km}
-                    >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Перечень работ"
-                        name="jobReason"
-                        rules={[{required: true}]}
-                        initialValue={customerData.jobReason}
-                    >
-                        <TextArea rows={3}/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Предв. стоимость"
-                        name="firstPrice"
-                        rules={[{required: true}]}
-                        initialValue={customerData.firstPrice}
-                    >
-                        <Input/>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="Сотрудник"
-                        name="serviceman"
-                        rules={[{required: true}]}
-                        initialValue={customerData.serviceman || servicemanOptions[0].value}
-                    >
-                        <Select
-                            placeholder="Сотрудник"
-                            filterOption={(input, option) =>
-                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                            }
-                            options={servicemanOptions}
-                        />
-                    </Form.Item>
-
-                    <div className="margin-bottom-20" style={{display: "flex", flexDirection: 'column'}}>
-                        <Form.Item
-                            label="Представитель"
-                            name="customerRepresentative"
-                            rules={[{required: true}]}
-                            initialValue={customerData.customerRepresentative}
-                        >
-                            <Input/>
-                        </Form.Item>
-                        <Button
-                            onClick={
-                                () => form.setFieldValue('customerRepresentative', form.getFieldValue('name'))
-                            }
-                        >
-                            Представитель и заказчик совпадают
-                        </Button>
-                    </div>
+                        Представитель и заказчик совпадают
+                    </Button>
                 </div>
 
-                <div>
-                    <Form.Item
-                        label="Обнар. недостатки"
-                        name="discoveredFlaws"
-                        initialValue={customerData.discoveredFlaws}
-                    >
-                        <TextArea rows={3}/>
-                    </Form.Item>
+                <Form.Item
+                    label="Обнар. недостатки"
+                    name="discoveredFlaws"
+                    initialValue={customerData.discoveredFlaws}
+                >
+                    <TextArea rows={3}/>
+                </Form.Item>
 
-                    <Form.Item
-                        label="Обосн. доб. стоимости"
-                        name="valueJustification"
-                        initialValue={customerData.valueJustification}
-                    >
-                        <TextArea rows={3}/>
-                    </Form.Item>
+                <Form.Item
+                    label="Обосн. доб. стоимости"
+                    name="valueJustification"
+                    initialValue={customerData.valueJustification}
+                >
+                    <TextArea rows={3}/>
+                </Form.Item>
 
-                    <Form.Item
-                        label="Итоговая стоимость"
-                        name="fullPrice"
-                        initialValue={customerData.fullPrice}
-                    >
-                        <Input/>
-                    </Form.Item>
+                <Form.Item
+                    label="Итоговая стоимость"
+                    name="fullPrice"
+                    initialValue={customerData.fullPrice}
+                >
+                    <Input/>
+                </Form.Item>
 
-                    <Form.Item
-                        label="Дата окончания работ"
-                        name="workEnd"
-                    >
-                        <DatePicker
-                            placeholder={["Дата окончания работ"]}
-                            language="ru-RU"
-                            format={DATE_FORMAT}
-                        />
-                    </Form.Item>
+                <Form.Item
+                    label="Дата окончания работ"
+                    name="workEnd"
+                >
+                    <DatePicker
+                        placeholder={["Дата окончания работ"]}
+                        language="ru-RU"
+                        format={DATE_FORMAT}
+                    />
+                </Form.Item>
 
-                    <Form.Item
-                        label="Гарантия"
-                        name="warranty"
-                        initialValue={customerData.warranty}
-                    >
-                        <Select
-                            placeholder="Гарантия модулей"
-                            filterOption={(input, option) =>
-                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                            }
-                            options={warrantyOptions}
-                        />
-                    </Form.Item>
+                <Form.Item
+                    label="Гарантия"
+                    name="warranty"
+                    initialValue={customerData.warranty}
+                >
+                    <Select
+                        placeholder="Гарантия модулей"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={warrantyOptions}
+                    />
+                </Form.Item>
 
-                    <Form.Item
-                        label="Модель модулей"
-                        name="module"
-                        initialValue={customerData.module}
-                    >
-                        <Select
-                            placeholder="Модель модулей"
-                            filterOption={(input, option) =>
-                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                            }
-                            options={moduleOptions}
-                        />
-                    </Form.Item>
-                </div>
+                <Form.Item
+                    label="Модель модулей"
+                    name="module"
+                    initialValue={customerData.module}
+                >
+                    <Select
+                        placeholder="Модель модулей"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={moduleOptions}
+                    />
+                </Form.Item>
             </Form>
         </Modal>
     )
