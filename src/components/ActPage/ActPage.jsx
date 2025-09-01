@@ -17,10 +17,10 @@ const ActPage = ({customerData, date}) => {
             <div className="header">
                 <div className="service-data">
                     <div className="customer-worker">Исполнитель:</div>
-                    <div className="bold">ИП Волк Дмитрий Иванович</div>
-                    <div>УНП: 291388531</div>
-                    <div>Юр. адрес: г. Белоозёрск, ул. Ленина 62/2 кв 1</div>
-                    <div>Факт. адрес: г. Минск, Брилевский тупик 5 к4</div>
+                    <div className="bold">ООО "Первый Автосвет"</div>
+                    <div>УНП: 193897412</div>
+                    <div>Юр. адрес: Минск, Брилевский тупик 5</div>
+                    <div>Факт. адрес: Минск, Брилевский тупик 5</div>
                     <div>Телефон: +375 (33) 66-55-44-9</div>
                 </div>
                 <div className="customer-data">
@@ -32,7 +32,7 @@ const ActPage = ({customerData, date}) => {
 
             <div>
                 <div>
-                    { customerData?.carData?.name && <span><b>Автомобиль:</b> {customerData?.carData?.name}, </span> }
+                { customerData?.carData?.name && <span><b>Автомобиль:</b> {customerData?.carData?.name}, </span> }
                     { customerData?.carData?.number && <span><b>гос. номер:</b> {customerData?.carData?.number}, </span> }
                     { customerData?.carData?.year && <span><b>год. вып.:</b> {customerData?.carData?.year}, </span> }
                     { customerData?.carData?.km && <span><b>пробег:</b> {customerData?.carData?.km}</span> }
@@ -137,7 +137,7 @@ const ActPage = ({customerData, date}) => {
                     alignItems: 'center'
                 }}>
                     <div>Мастер-приёмщик {customerData.serviceman}</div>
-                    <div>{spaceForCredentions} БП</div>
+                    <div>{spaceForCredentions} МП</div>
                     <div>{date}</div>
                 </div>
             </div>

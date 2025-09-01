@@ -29,10 +29,10 @@ const RequestPage = ({customerData, date}) => {
             <div className="header">
                 <div className="service-data">
                     <div className="customer-worker">Исполнитель:</div>
-                    <div className="bold">ИП Волк Дмитрий Иванович</div>
-                    <div>УНП: 291388531</div>
-                    <div>Юр. адрес: г. Белоозёрск, ул. Ленина 62/2 кв 1</div>
-                    <div>Факт. адрес: г. Минск, Брилевский тупик 5 к4</div>
+                    <div className="bold">ООО "Первый Автосвет"</div>
+                    <div>УНП: 193897412</div>
+                    <div>Юр. адрес: Минск, Брилевский тупик 5</div>
+                    <div>Факт. адрес: Минск, Брилевский тупик 5</div>
                     <div>Телефон: +375 (33) 66-55-44-9</div>
                 </div>
                 <div className="customer-data">
@@ -99,7 +99,7 @@ const RequestPage = ({customerData, date}) => {
                     alignItems: 'center'
                 }}>
                     <div>Мастер-приёмщик {customerData.serviceman}</div>
-                    <div>{spaceForCredentions} БП</div>
+                    <div>{spaceForCredentions} МП</div>
                     <div>{date}</div>
                 </div>
             </div>
