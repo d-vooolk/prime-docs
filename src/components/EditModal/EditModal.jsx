@@ -5,6 +5,7 @@ import {DATE_FORMAT, moduleOptions, servicemanOptions, warrantyOptions} from "..
 import duckImage from "../../assets/duck.png";
 import porscheFirst from '../../assets/porsche911.png';
 import unicorn from '../../assets/unicorn.png';
+import './EditModal.css';
 
 const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData}) => {
     const [form] = useForm();
@@ -69,13 +70,13 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             onOk={() => okHandler()}
             onCancel={() => cancelHandler()}
         >
-            <div style={{position: "absolute", top: '-60px', right: '-70px', rotate: '20deg'}}>
+            <div style={{position: "absolute", top: '-60px', right: '-70px', rotate: '20deg'}} className="floating-duck">
                 <Image src={duckImage} width={80} height={80} preview={false}/>
             </div>
-            <div style={{position: "absolute", top: '-60px', left: '-70px', rotate: '0deg'}}>
+            <div style={{position: "absolute", top: '-60px', left: '-70px', rotate: '0deg'}} className="floating-unicorn">
                 <Image src={unicorn} width={80} height={80} preview={false}/>
             </div>
-            <div style={{position: "absolute", top: '-110px', left: '42%', rotate: '0deg'}}>
+            <div style={{position: "absolute", top: '-110px', left: '42%', rotate: '0deg'}} className="floating-porsche">
                 <Image src={porscheFirst} width={120} preview={false}/>
             </div>
             <Form

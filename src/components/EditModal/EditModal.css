@@ -1,0 +1,68 @@
+/* Анимация плавания для утки */
+.floating-duck {
+    animation: float-duck 6s ease-in-out infinite;
+}
+
+@keyframes float-duck {
+    0%, 100% {
+        transform: translate(0, 0) rotate(20deg);
+    }
+    25% {
+        transform: translate(-5px, -8px) rotate(22deg);
+    }
+    50% {
+        transform: translate(8px, -3px) rotate(18deg);
+    }
+    75% {
+        transform: translate(-3px, 5px) rotate(21deg);
+    }
+}
+
+/* Анимация плавания для единорога */
+.floating-unicorn {
+    animation: float-unicorn 8s ease-in-out infinite;
+}
+
+@keyframes float-unicorn {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    20% {
+        transform: translate(6px, -5px) rotate(2deg);
+    }
+    40% {
+        transform: translate(-4px, -8px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(8px, 3px) rotate(1deg);
+    }
+    80% {
+        transform: translate(-6px, 6px) rotate(-2deg);
+    }
+}
+
+/* Анимация плавания для Porsche */
+.floating-porsche {
+    animation: float-porsche 7s ease-in-out infinite;
+}
+
+@keyframes float-porsche {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    16.66% {
+        transform: translate(-3px, -6px) rotate(1deg);
+    }
+    33.33% {
+        transform: translate(7px, -2px) rotate(-1deg);
+    }
+    50% {
+        transform: translate(4px, 7px) rotate(0deg);
+    }
+    66.66% {
+        transform: translate(-6px, 4px) rotate(1deg);
+    }
+    83.33% {
+        transform: translate(2px, -4px) rotate(-1deg);
+    }
+}
