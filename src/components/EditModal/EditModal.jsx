@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-import {Button, DatePicker, Form, Image, Input, Modal, Progress, Select, Typography} from "antd";
+import {Button, DatePicker, Form, Input, Modal, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
 import {DATE_FORMAT, moduleOptions, servicemanOptions, warrantyOptions} from "../../constants/constants";
-import duckImage from "../../assets/duck.png";
-import porscheFirst from '../../assets/porsche911.png';
-import unicorn from '../../assets/unicorn.png';
-import './EditModal.css';
 
 const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData}) => {
     const [form] = useForm();
@@ -70,15 +66,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
             onOk={() => okHandler()}
             onCancel={() => cancelHandler()}
         >
-            <div style={{position: "absolute", top: '-60px', right: '-70px', rotate: '20deg'}} className="floating-duck">
-                <Image src={duckImage} width={80} height={80} preview={false}/>
-            </div>
-            <div style={{position: "absolute", top: '-60px', left: '-70px', rotate: '0deg'}} className="floating-unicorn">
-                <Image src={unicorn} width={80} height={80} preview={false}/>
-            </div>
-            <div style={{position: "absolute", top: '-110px', left: '42%', rotate: '0deg'}} className="floating-porsche">
-                <Image src={porscheFirst} width={120} preview={false}/>
-            </div>
             <Form
                 name="basic"
                 labelCol={{span: 8}}
@@ -88,10 +75,6 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                 autoComplete="true"
                 form={form}
             >
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 30, marginBottom: "30px" }}>
-                    <Typography style={{ fontFamily: "Inter, sans-serif", fontSize: "20px" }}>Собираем Диане на 911</Typography>
-                    <Progress type="circle" percent={1} size={40}/>
-                </div>
                 <Form.Item
                     label="ФИО"
                     name="name"
