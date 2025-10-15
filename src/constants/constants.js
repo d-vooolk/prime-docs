@@ -83,12 +83,40 @@ export const moduleOptions = [
         label: 'Aozoom DK200',
     },
     {
+        value: 'Aozoom A15',
+        label: 'Aozoom A15',
+    },
+    {
+        value: 'Aozoom A5',
+        label: 'Aozoom A5',
+    },
+    {
+        value: 'Aozoom A3 pro',
+        label: 'Aozoom A3 pro',
+    },
+    {
         value: 'Sunrise Mini',
         label: 'Sunrise Mini',
     },
     {
-        value: 'UPS Maker',
-        label: 'UPS Maker',
+        value: 'Sunrise 2x2 WS-2',
+        label: 'Sunrise 2x2 WS-2',
+    },
+    {
+        value: 'Sunrise Chameleon White',
+        label: 'Sunrise Chameleon White',
+    },
+    {
+        value: 'Sunrise Chameleon Smart',
+        label: 'Sunrise Chameleon Smart',
+    },
+    {
+        value: 'Sunrise Racer',
+        label: 'Sunrise Racer',
+    },
+    {
+        value: 'Optima Alteza S',
+        label: 'Optima Alteza S',
     },
     {
         value: 'клиентские',
