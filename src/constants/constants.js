@@ -45,6 +45,10 @@ export const DATE_FORMAT = 'DD-MM-YYYY';
 
 export const servicemanOptions = [
     {
+        value: "Синица Марина Сергеевна",
+        label: "Синица Марина Сергеевна"
+    },
+    {
         value: "Волк Дмитрий Иванович",
         label: "Волк Дмитрий Иванович"
     },
