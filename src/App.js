@@ -11,7 +11,7 @@ import {
     FileAddTwoTone,
     MessageTwoTone,
     PrinterTwoTone,
-    SaveTwoTone, SmileTwoTone
+    SmileTwoTone
 } from "@ant-design/icons";
 import {DEFAULT_CUSTOMER_DATA, FILE_EXTENTION, MODE_OPTIONS, PRINT_SETTINGS} from "./constants/constants";
 import {FEEDBACK_LINK, FEEDBACK_REQUEST, JOB_DONE} from "./utils/smsConstants";
@@ -53,6 +53,7 @@ function App() {
 
 
     const handlePrintRequest = () => {
+        saveJson();
         printJS({
             printable: 'printableRequest',
             ...PRINT_SETTINGS,
@@ -60,6 +61,7 @@ function App() {
     };
 
     const handlePrintAct = () => {
+        saveJson();
         printJS({
             printable: 'printableAct',
             ...PRINT_SETTINGS,
@@ -117,13 +119,6 @@ function App() {
 
                     <Tooltip placement="bottom" title="Распечатать">
                         <PrinterTwoTone onClick={isShowAct ? handlePrintAct : handlePrintRequest} className="action-button"/>
-                    </Tooltip>
-
-                    <Tooltip placement="bottom" title="Сохранить клиента">
-                        <SaveTwoTone
-                            onClick={() => saveJson()}
-                            className="action-button"
-                        />
                     </Tooltip>
 
                     <Input type="file" accept=".json" onChange={handleFileUpload} ref={fileInputRef} style={{ display: "none" }} />
