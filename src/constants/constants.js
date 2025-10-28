@@ -119,6 +119,10 @@ export const moduleOptions = [
         label: 'Optima Alteza S',
     },
     {
+        value: 'Aozoom Truck Trailer 24V',
+        label: 'Aozoom Truck Trailer 24V',
+    },
+    {
         value: 'клиентские',
         label: 'клиентские',
     },

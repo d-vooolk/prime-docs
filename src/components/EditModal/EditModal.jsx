@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import {Button, DatePicker, Form, Input, Modal, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
 import {DATE_FORMAT, moduleOptions, servicemanOptions, warrantyOptions} from "../../constants/constants";
@@ -184,12 +184,21 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     <TextArea rows={3}/>
                 </Form.Item>
 
-                <Form.Item
-                    label="Итоговая стоимость"
-                    name="fullPrice"
-                >
-                    <Input/>
-                </Form.Item>
+                <div className="margin-bottom-20" style={{display: "flex", flexDirection: 'column'}}>
+                    <Form.Item
+                        label="Итоговая стоимость"
+                        name="fullPrice"
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Button
+                        onClick={
+                            () => form.setFieldValue('fullPrice', form.getFieldValue('firstPrice'))
+                        }
+                    >
+                        Стоимость не изменилась
+                    </Button>
+                </div>
 
                 <Form.Item
                     label="Дата окончания работ"
