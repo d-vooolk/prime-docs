@@ -38,6 +38,12 @@ const RequestPage = ({customerData, date}) => {
                 <div className="customer-data">
                     <div className="customer-worker">Заказчик:</div>
                     <div className="bold">ФИО: {customerData?.name || emptyData}</div>
+                    {
+                        customerData?.name !== customerData?.customerRepresentative
+                        && (
+                            <div className="bold">Представитель: {customerData?.customerRepresentative || emptyData}</div>
+                        )
+                    }
                     <div>Телефон: {customerData?.phone || emptyData}</div>
                 </div>
             </div>
