@@ -25,7 +25,7 @@ const ActPage = ({customerData, date}) => {
                 </div>
                 <div className="customer-data">
                     <div className="customer-worker">Заказчик:</div>
-                    <div className="bold">ФИО: {customerData.name || emptyData}</div>
+                    <div className="bold">Собственник: {customerData.name || emptyData}</div>
                     {
                         customerData?.name !== customerData?.customerRepresentative
                         && (
