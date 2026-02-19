@@ -1,3 +1,5 @@
+import {generateRandomCode} from "../utils/randomIndexForDocs";
+
 export const MODE_OPTIONS = [
     {
         label: 'Заявка',
@@ -20,6 +22,7 @@ export const PRINT_SETTINGS = {
 };
 
 export const DEFAULT_CUSTOMER_DATA = {
+    randomFileCode: generateRandomCode(),
     name: '',
     phone: '',
     carData: {

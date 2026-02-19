@@ -1,7 +1,6 @@
 import React from 'react';
 import './ActPage.css';
 import {emptyData, spaceForCredentions} from "../../utils/constants";
-import {generateRandomCode} from "../../utils/randomIndexForDocs";
 
 const ActPage = ({customerData, date}) => {
     return (
@@ -11,7 +10,7 @@ const ActPage = ({customerData, date}) => {
                 date
                     ?.split('.')
                     ?.join('') || ''
-            }-{generateRandomCode()} от {date}
+            }-{customerData?.randomFileCode} от {date}
             </div>
 
             <div className="header">

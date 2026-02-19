@@ -1,6 +1,6 @@
 import './App.css';
 import printJS from "print-js";
-import React, {useMemo, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import RequestPage from "./components/RequestPage/RequestPage";
 import EditModal from "./components/EditModal/EditModal";
 import {Input, notification, Radio, Tooltip} from "antd";
@@ -16,6 +16,7 @@ import {
 import {DEFAULT_CUSTOMER_DATA, FILE_EXTENTION, MODE_OPTIONS, PRINT_SETTINGS} from "./constants/constants";
 import {FEEDBACK_LINK, FEEDBACK_REQUEST, JOB_DONE} from "./utils/smsConstants";
 import {sendSMS} from "./utils/sms";
+import {generateRandomCode} from "./utils/randomIndexForDocs";
 
 const Context = React.createContext({ name: 'Default' });
 
@@ -27,6 +28,14 @@ function App() {
     const [isShowAct, setIsShowAct] = useState(false);
     const [customerData, setCustomerData] = useState(DEFAULT_CUSTOMER_DATA);
     const [api, contextHolder] = notification.useNotification();
+    const [randomFileCode, setRandomFileCode] = useState();
+
+    useEffect(() => {
+        if (!customerData?.randomFileCode) {
+            setRandomFileCode(generateRandomCode());
+            setCustomerData({randomFileCode: randomFileCode, ...customerData})
+        }
+    }, [])
 
     const openNotification = (text, error) => {
         api.info({
@@ -77,7 +86,11 @@ function App() {
             reader.onload = (e) => {
                 try {
                     const parsedData = JSON.parse(e?.target?.result);
-                    setCustomerData(parsedData);
+                    if (parsedData?.randomFileCode) {
+                        setCustomerData(parsedData);
+                    } else {
+                        setCustomerData({randomFileCode: generateRandomCode(), ...parsedData});
+                    }
                 } catch (error) {
                     console.error('Ошибка при чтении файла:', error);
                     alert('Файл не является валидным JSON.');
