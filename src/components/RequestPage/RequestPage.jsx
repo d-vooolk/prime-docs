@@ -58,6 +58,7 @@ const RequestPage = ({customerData, date, serviceOption}) => {
                     dataSource={tableDataSource}
                     pagination={false}
                     className="margin-bottom-20"
+                    style={{ zIndex: 0 }}
                 />
                 <br />
             </div>

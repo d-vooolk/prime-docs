@@ -126,7 +126,7 @@ function App() {
                     optionType="button"
                     buttonStyle="solid"
                     onChange={(e) => setServiceOption(e.target.value)}
-                    style={{ position: 'absolute', top: '1%', left: '45%', zIndex: "999" }}
+                    style={{ position: 'fixed', top: '1%', left: '45%', zIndex: "999" }}
                 />
 
             <div style={{
@@ -136,13 +136,14 @@ function App() {
                 display: "flex",
                 justifyContent: "flex-end",
                 paddingTop: "10px",
+                zIndex: 999,
             }}>
                 <div style={{
                     display: "flex",
                     justifyContent: "space-between",
                     paddingRight: "50px",
                     gap: "15px",
-                    alignItems: "center"
+                    alignItems: "center",
                 }}>
                     <Tooltip placement="bottom" title="Редактировать данные">
                         <EditTwoTone onClick={() => setIsModalOpen(!isModalOpen)} className="action-button"/>
