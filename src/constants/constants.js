@@ -11,6 +11,27 @@ export const MODE_OPTIONS = [
     },
 ];
 
+export const SERVICE_OPTIONS_NAMES = {
+    headlights: 'headlights',
+    toner: 'toner',
+    cleaning: 'cleaning',
+}
+
+export const SERVICES_OPTIONS = [
+    {
+        label: 'Фары',
+        value: SERVICE_OPTIONS_NAMES.headlights,
+    },
+    {
+        label: 'Тонировка',
+        value: SERVICE_OPTIONS_NAMES.toner,
+    },
+    {
+        label: 'Уборка',
+        value: SERVICE_OPTIONS_NAMES.cleaning,
+    },
+];
+
 export const FILE_EXTENTION = '.json';
 
 export const PRINT_SETTINGS = {

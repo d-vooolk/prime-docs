@@ -13,7 +13,13 @@ import {
     PrinterTwoTone,
     SmileTwoTone
 } from "@ant-design/icons";
-import {DEFAULT_CUSTOMER_DATA, FILE_EXTENTION, MODE_OPTIONS, PRINT_SETTINGS} from "./constants/constants";
+import {
+    DEFAULT_CUSTOMER_DATA,
+    FILE_EXTENTION,
+    MODE_OPTIONS,
+    PRINT_SETTINGS, SERVICE_OPTIONS_NAMES,
+    SERVICES_OPTIONS
+} from "./constants/constants";
 import {FEEDBACK_LINK, FEEDBACK_REQUEST, JOB_DONE} from "./utils/smsConstants";
 import {sendSMS} from "./utils/sms";
 import {generateRandomCode} from "./utils/randomIndexForDocs";
@@ -29,6 +35,7 @@ function App() {
     const [customerData, setCustomerData] = useState(DEFAULT_CUSTOMER_DATA);
     const [api, contextHolder] = notification.useNotification();
     const [randomFileCode, setRandomFileCode] = useState();
+    const [serviceOption, setServiceOption] = useState(SERVICE_OPTIONS_NAMES.headlights);
 
     useEffect(() => {
         if (!customerData?.randomFileCode) {
@@ -111,6 +118,17 @@ function App() {
     return (
             <Context.Provider value={contextValue}>
                 {contextHolder}
+
+                <Radio.Group
+                    block
+                    options={SERVICES_OPTIONS}
+                    defaultValue={SERVICE_OPTIONS_NAMES.headlights}
+                    optionType="button"
+                    buttonStyle="solid"
+                    onChange={(e) => setServiceOption(e.target.value)}
+                    style={{ position: 'absolute', top: '1%', left: '45%', zIndex: "999" }}
+                />
+
             <div style={{
                 position: "fixed",
                 height: "3vh",
@@ -147,6 +165,7 @@ function App() {
                         buttonStyle="solid"
                         onChange={() => setIsShowAct(!isShowAct)}
                     />
+
                     {
                         customerData?.phone
                         && <Tooltip placement="bottom" title="Оповестить о готовности авто">
@@ -174,8 +193,8 @@ function App() {
             <div>
                 {
                     !isShowAct
-                        ? (<RequestPage customerData={customerData} date={date}/>)
-                        : (<ActPage customerData={customerData} date={date}/>)
+                        ? (<RequestPage customerData={customerData} date={date} serviceOption={serviceOption} />)
+                        : (<ActPage customerData={customerData} date={date} serviceOption={serviceOption} />)
                 }
 
                 <EditModal
@@ -183,6 +202,7 @@ function App() {
                     setIsModalOpen={setIsModalOpen}
                     customerData={customerData}
                     setCustomerData={setCustomerData}
+                    serviceOption={serviceOption}
                 />
             </div>
         </Context.Provider>

@@ -3,8 +3,12 @@ import './RequestPage.css';
 import {Table} from "antd";
 import {emptyData, spaceForCredentions} from "../../utils/constants";
 import {tableColumns} from "../../utils/tableColumns";
+import {SERVICE_OPTIONS_NAMES} from "../../constants/constants";
+import {HeadlightRequestDescription} from "./Descriptions/HeadlightRequestDescription";
+import {TonerRequestDescription} from "./Descriptions/TonerRequestDescription";
+import {CleaningRequestDescription} from "./Descriptions/CleaningRequestDescription";
 
-const RequestPage = ({customerData, date}) => {
+const RequestPage = ({customerData, date, serviceOption}) => {
     const tableDataSource = [
         {
             key: '1',
@@ -73,36 +77,9 @@ const RequestPage = ({customerData, date}) => {
                 <div className="bold biggest margin-bottom-20">{customerData?.firstPrice || 0} бел. руб.</div>
             </div>
 
-            <div>
-                Дополнительные работы, необходимость в которых может возникнуть в процессе исполнения Заказа, их <br />
-                стоимость и сроки выполнения Исполнитель согласовывает с Заказчиком/Представителем устно и/или <br />
-                письменно с последующим отражением в документе, подтверждающий факт выполненных работ. <br />
-                Исполнитель не несёт ответственность за несоответствие параметрам гос. стандартов при <br />
-                прохождении государственного технического осмотра. <br />
-                Исполнитель имеет право на совершение фото и видео съёмки автомобиля, а так же на <br />
-                управлени ТС для тех. целей
-            </div>
-
-            <div>
-                Клиент обязуется забрать автомобиль в течение 24 часов с момента уведомления о завершении работ (по телефону, SMS, email или иным способом). <br/>
-                В случае, если клиент не забирает автомобиль в указанный срок, взимается плата за парковку в размере 15 белорусских рублей в день.<br/>
-                Мастерская не несёт материальной ответственности за повреждения, произошедшие на парковке (ДТП, угоны, стихийные бедствия и иные внешние воздействия).<br/>
-                Клиент принимает на себя все риски, связанные с дальнейшим хранением автомобиля на территории мастерской.
-            </div>
-
-            <br/>
-            <br/>
-
-            <div>
-                При наличии дефектов автомобиля, находящихся непосредственно в зоне проведения ремонтных работ, Заказчик обязан описать их ниже. <br />
-                В случае обнаружения дефектов, влияющих на качественное выполнение работ, не указанных в документе, Исполнитель может взымать <br />
-                дополнительную плату за их исправление, с уведомлением или без уведомления Заказчика. <br />
-                ____________________________________________________________________
-            </div>
-
-            <br/>
-            <br/>
-            <br/>
+            { serviceOption === SERVICE_OPTIONS_NAMES.headlights && (<HeadlightRequestDescription />) }
+            { serviceOption === SERVICE_OPTIONS_NAMES.toner && (<TonerRequestDescription />) }
+            { serviceOption === SERVICE_OPTIONS_NAMES.cleaning && (<CleaningRequestDescription />) }
 
             <div className="bold biggest">Заявку оформил:</div>
             <div className="final-req">

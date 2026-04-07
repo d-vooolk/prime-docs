@@ -1,9 +1,15 @@
 import React, {useEffect} from "react";
 import {Button, DatePicker, Form, Input, Modal, Select} from "antd";
 import {useForm} from "antd/es/form/Form";
-import {DATE_FORMAT, moduleOptions, servicemanOptions, warrantyOptions} from "../../constants/constants";
+import {
+    DATE_FORMAT,
+    moduleOptions,
+    SERVICE_OPTIONS_NAMES,
+    servicemanOptions,
+    warrantyOptions
+} from "../../constants/constants";
 
-const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData}) => {
+const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData, serviceOption}) => {
     const [form] = useForm();
 
     const {TextArea} = Input;
@@ -211,31 +217,37 @@ const EditModal = ({isModalOpen, setIsModalOpen, customerData, setCustomerData})
                     />
                 </Form.Item>
 
-                <Form.Item
-                    label="Гарантия"
-                    name="warranty"
-                >
-                    <Select
-                        placeholder="Гарантия модулей"
-                        filterOption={(input, option) =>
-                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                        }
-                        options={warrantyOptions}
-                    />
-                </Form.Item>
+                {
+                    serviceOption === SERVICE_OPTIONS_NAMES.headlights && (
+                        <>
+                            <Form.Item
+                                label="Гарантия"
+                                name="warranty"
+                            >
+                                <Select
+                                    placeholder="Гарантия модулей"
+                                    filterOption={(input, option) =>
+                                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                    }
+                                    options={warrantyOptions}
+                                />
+                            </Form.Item>
 
-                <Form.Item
-                    label="Модель модулей"
-                    name="module"
-                >
-                    <Select
-                        placeholder="Модель модулей"
-                        filterOption={(input, option) =>
-                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                        }
-                        options={moduleOptions}
-                    />
-                </Form.Item>
+                            <Form.Item
+                                label="Модель модулей"
+                                name="module"
+                            >
+                                <Select
+                                    placeholder="Модель модулей"
+                                    filterOption={(input, option) =>
+                                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                                    }
+                                    options={moduleOptions}
+                                />
+                            </Form.Item>
+                        </>
+                    )
+                }
             </Form>
         </Modal>
     )
