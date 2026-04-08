@@ -136,7 +136,7 @@ function App() {
                 display: "flex",
                 justifyContent: "flex-end",
                 paddingTop: "10px",
-                zIndex: 999,
+                zIndex: 998,
             }}>
                 <div style={{
                     display: "flex",
